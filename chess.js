@@ -20,6 +20,3 @@ function makeBoard() {
     }
     board.appendChild(brd);
 }
-
-
-document.body.onload(makeBoard());
