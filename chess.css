@@ -1,4 +1,39 @@
-h1 {
-  text-align: center;
+.flex-container {
+  display: flex;
+  height: 400px;
+  width: 400px;
+  flex-wrap: wrap;
+}
 
+.rank {
+  height: 50px;
+  width: 400px;
+  display: inline-block;
+}
+
+.tile:nth-child(even) {
+  background-color: blue;
+}
+
+.tile:nth-child(odd) {
+  background-color: crimson;
+}
+
+.tile {
+  height: 50px;
+  width: 50px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+div {
+  border-style: solid;
+  border-width: 1px;
+}
+
+#board {
+  display: inline-block;
+  width: 1050px;
+  height: 1050px;
+  padding: 5px;
 }
