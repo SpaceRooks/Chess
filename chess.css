@@ -7,14 +7,7 @@
 .rank {
   height: 50px;
   width: 400px;
-}
-
-.tile:nth-child(even) {
-  background-color: blue;
-}
-
-.tile:nth-child(odd) {
-  background-color: crimson;
+  margin: -4px;
 }
 
 .tile {
@@ -24,7 +17,6 @@
 
 div {
   display: inline-flex;
-  margin: none;
   padding: none;
 }
 
