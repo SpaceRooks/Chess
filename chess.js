@@ -33,3 +33,13 @@ function makeBoard() {
     }
     board.appendChild(brd);
 }
+
+
+function setBoard() {
+
+}
+
+function getPieces() {
+    const fPath = "Chess_Peices"
+    
+}
