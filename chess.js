@@ -11,9 +11,10 @@ function makeBoard() {
         let row = document.createElement("div");
         row.setAttribute("id", i.toString());
         row.setAttribute("class", "rank");
-        for (var r = 0; r < side.length; r++) {
+        for (var r = 0; r < side.length; r++) {;
             let box = document.createElement("div");
             box.setAttribute("id", "" + side[r] + i.toString() + "");
+            box.setAttribute("name", i.toString());
             box.setAttribute("class", "tile");
             if (color == true) {
                 box.style.backgroundColor = "blue";
@@ -32,14 +33,32 @@ function makeBoard() {
         brd.appendChild(row);
     }
     board.appendChild(brd);
+    setBoard();
 }
 
 
 function setBoard() {
-
+    setPawns();
 }
 
-function getPieces() {
-    const fPath = "Chess_Peices"
-    
+function setPawns() {
+    var wPs = document.getElementsByName("2");
+    var bPs = document.getElementsByName("7")
+    var path = "Chess_Peices";
+    var t = 0;
+    var src;
+    while (t < 2) {
+        for (var i = 0; i < wPs.length; i++) {  
+            if (t == 0) {
+                src = "Chess_Peices/W/wP.png";
+                var tile = wPs[i];
+                tile.appendChild(document.createElement("img").setAttribute("src", src).setAttribute("id", "wp" + i.toString() + ""));
+            } else {
+                src = "Chess_Peices/B/bP.png";
+                var tile = bPs[i];
+                tile.appendChild(document.createElement("img").setAttribute("src", src).setAttribute("id", "bp" + i.toString() + ""));
+            }
+        }
+        t++;
+    }
 }
