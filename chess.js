@@ -39,6 +39,7 @@ function makeBoard() {
 
 function setBoard() {
     setPawns();
+
 }
 
 function setPawns() {
@@ -49,14 +50,19 @@ function setPawns() {
     var src;
     while (t < 2) {
         for (var i = 0; i < wPs.length; i++) {  
+            var img =document.createElement("img");
             if (t == 0) {
                 src = "Chess_Peices/W/wP.png";
                 var tile = wPs[i];
-                tile.appendChild(document.createElement("img").setAttribute("src", src).setAttribute("id", "wp" + i.toString() + ""));
+                img.setAttribute("src", src);
+                img.setAttribute("id", "wp" + i.toString() + "");
+                tile.appendChild(img);
             } else {
                 src = "Chess_Peices/B/bP.png";
                 var tile = bPs[i];
-                tile.appendChild(document.createElement("img").setAttribute("src", src).setAttribute("id", "bp" + i.toString() + ""));
+                img.setAttribute("src", src);
+                img.setAttribute("id", "bp" + i.toString() + "");
+                tile.appendChild(img);
             }
         }
         t++;
