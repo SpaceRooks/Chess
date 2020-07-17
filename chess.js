@@ -49,7 +49,8 @@ function setBoard() {
         var srcP = "Chess_Peices/" + n[i] + "/";
         for (var t = 0; t < all[i].length; t++) {
             var img = document.createElement("img");
-            switch (all[i][t].id) {
+            var piece = all[i][t];
+            switch (piece.id) {
                 case side[0] + num[i] || side[7] + num[i]:
                     src = srcP + n[i].toLowerCase() + "R.png";
                     break;
@@ -68,6 +69,7 @@ function setBoard() {
             }
             img.setAttribute("src", src);
             img.setAttribute("id", n[i] + i.toString() + "");
+            piece.appendChild(img);
         }
     }
 }
