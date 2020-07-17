@@ -38,19 +38,48 @@ function makeBoard() {
 
 
 function setBoard() {
+    var n = ["W", "B"];
+    var num = ["1", "8"];
     setPawns();
-
+    var one = document.getElementsByName("1");
+    var last = document.getElementsByName("8");
+    var all = [one, last];
+    var src;
+    for (var i = 0; i < all.length; i++) {
+        var srcP = "Chess_Peices/" + n[i] + "/";
+        for (var t = 0; t < all[i].length; t++) {
+            var img = document.createElement("img");
+            switch (all[i][t].id) {
+                case side[0] + num[i] || side[7] + num[i]:
+                    src = srcP + n[i].toLowerCase() + "R.png";
+                    break;
+                case side[1] + num[i] || side[6] + num[i]:
+                    src = srcP + n[i].toLowerCase() + "N.png";
+                    break;
+                case side[2] + num[i] || side[5] + num[i]:
+                    src = srcP + n[i].toLowerCase() + "B.png";
+                    break;
+                case side[3] + num[i]:
+                    src = srcP + n[i].toLowerCase() + "Q.png";
+                    break;
+                case side[4] + num[i]:
+                    src = srcP + n[i].toLowerCase() + "K.png";
+                    break;
+            }
+            img.setAttribute("src", src);
+            img.setAttribute("id", n[i] + i.toString() + "");
+        }
+    }
 }
 
 function setPawns() {
     var wPs = document.getElementsByName("2");
     var bPs = document.getElementsByName("7")
-    var path = "Chess_Peices";
     var t = 0;
     var src;
     while (t < 2) {
         for (var i = 0; i < wPs.length; i++) {  
-            var img =document.createElement("img");
+            var img = document.createElement("img");
             if (t == 0) {
                 src = "Chess_Peices/W/wP.png";
                 var tile = wPs[i];
