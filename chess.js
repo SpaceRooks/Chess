@@ -51,13 +51,16 @@ function setBoard() {
             var img = document.createElement("img");
             var piece = all[i][t];
             switch (piece.id) {
-                case side[0] + num[i] || side[7] + num[i]:
+                case side[0] + num[i]:
+                case side[7] + num[i]:
                     src = srcP + n[i].toLowerCase() + "R.png";
                     break;
-                case side[1] + num[i] || side[6] + num[i]:
+                case side[1] + num[i]:
+                case side[6] + num[i]:
                     src = srcP + n[i].toLowerCase() + "N.png";
                     break;
-                case side[2] + num[i] || side[5] + num[i]:
+                case side[2] + num[i]:
+                case side[5] + num[i]:
                     src = srcP + n[i].toLowerCase() + "B.png";
                     break;
                 case side[3] + num[i]:
