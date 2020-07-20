@@ -111,3 +111,6 @@ function setPawns() {
         t++;
     }
 }
+
+
+window.addEventListener("load", makeBoard());
