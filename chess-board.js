@@ -23,10 +23,10 @@
                 box.setAttribute("name", i.toString());
                 box.setAttribute("class", "tile");
                 if (color == true) {
-                    box.style.backgroundColor = "blue";
+                    box.style.backgroundColor = "#F7F2F0";
                     color = false;
                 } else {
-                    box.style.backgroundColor = "red";
+                    box.style.backgroundColor = "#2c5600";
                     color = true;
                 }
                 row.appendChild(box);
