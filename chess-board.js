@@ -2,7 +2,7 @@
 
 (function() {
     window.addEventListener("load", makeBoard);
-
+    
 
 
     const board = document.getElementById("board");
@@ -17,7 +17,7 @@
             row.setAttribute("id", i.toString());
             row.setAttribute("class", "rank");
     //   create the cells
-            for (let r = 0; r < side.length; r++) {;
+            for (let r = 0; r < side.length; r++) {
                 let box = document.createElement("div");
                 box.setAttribute("id", side[r] + i.toString());
                 box.setAttribute("name", i.toString());
@@ -64,31 +64,35 @@
                     case side[0] + num[i]:
                     case side[7] + num[i]:
                         src = srcP + n[i].toLowerCase() + "R.png";
-                        img.setAttribute("class", "rook");
+                        img.setAttribute("name", "rook");
+                        img.setAttribute("id", n[i] + "r");
                         break;
                     case side[1] + num[i]:
                     case side[6] + num[i]:
                         src = srcP + n[i].toLowerCase() + "N.png";
-                        img.setAttribute("class", "rook");
+                        img.setAttribute("name", "knight");
+                        img.setAttribute("id", n[i] + "n");
                         break;
                     case side[2] + num[i]:
                     case side[5] + num[i]:
                         src = srcP + n[i].toLowerCase() + "B.png";
-                        img.setAttribute("class", "rook");
+                        img.setAttribute("name", "bishop");
+                        img.setAttribute("id", n[i] + "b");
                         break;
                     case side[3] + num[i]:
                         src = srcP + n[i].toLowerCase() + "Q.png";
-                        img.setAttribute("class", "rook");
+                        img.setAttribute("name", "queen");
+                        img.setAttribute("id", n[i] + "q");
                         break;
                     case side[4] + num[i]:
                         src = srcP + n[i].toLowerCase() + "K.png";
-                        img.setAttribute("class", "rook");
+                        img.setAttribute("name", "king");
+                        img.setAttribute("id", n[i] + "k");
                         break;
                 }
     //   add it to the board
                 img.setAttribute("src", src);
-                img.setAttribute("name", "piece");
-                img.setAttribute("id", n[i] + i.toString() + "");
+                img.setAttribute("class", "piece");
                 piece.appendChild(img);
             }
         }
@@ -103,18 +107,19 @@
         while (t < 2) {
             for (let i = 0; i < wPs.length; i++) {  
                 let img = document.createElement("img");
+                let bs = i + 1;
     //   choose sorce and id
                 if (t == 0) {
                     src = "Chess_Peices/W/wP.png";
                     let tile = wPs[i];
                     img.setAttribute("src", src);
-                    img.setAttribute("id", "wp" + i.toString() + "");
+                    img.setAttribute("id", "wp" + bs.toString() + "");
                     tile.appendChild(img);
                 } else {
                     src = "Chess_Peices/B/bP.png";
                     let tile = bPs[i];
                     img.setAttribute("src", src);
-                    img.setAttribute("id", "bp" + i.toString() + "");
+                    img.setAttribute("id", "bp" + bs.toString() + "");
                     tile.appendChild(img);
                 }
             }
