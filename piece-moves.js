@@ -5,14 +5,14 @@
 function checkPiece(elem) {
     let pieceID = getID(elem);
     let player;
-    switch (pieceID[0]) {
-        case "W":
-            player = true;
-            break;
-        case "B":
-            player = false;
-            break;
-    }
+    // switch (pieceID[0]) {
+    //     case "W":
+    //         player = true;
+    //         break;
+    //     case "B":
+    //         player = false;
+    //         break;
+    // }
     switch (piece[1]) {
         case "p":
             movePawns(elem);
@@ -39,7 +39,7 @@ function movePawns(piece) {
 
 }
 
-function moveRook(piece) {
+function moveRook (piece) {
     
 }
 
