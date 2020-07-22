@@ -32,7 +32,7 @@ h1 {
   text-align: center;
 }
 
-.button {
+button {
   border: none;
   background-color: rgb(224, 201, 245);
   color:rgb(111, 29, 150);
@@ -44,10 +44,14 @@ h1 {
   margin: 4px 2px;
   cursor: pointer;
   position: center;
-  transform: translateX(550px);
 }
 
-.button:hover {
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+button:hover {
   background-color: rgb(248, 168, 199);
   color: rgb(228, 48, 138);
 }
