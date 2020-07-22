@@ -1,23 +1,28 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>SpaceRooks</title>
     <link rel="stylesheet" href="chess.css">
-    <script src="jquery-3.2.1.min.js"></script>
-    
+    <script src="chess-board.js"></script>
+    <script src="piece-moves.js"></script>
+   <!-- <script src="jquery-3.2.1.min.js"></script> --> 
   </head>
+
   <body>
     <h1>Space Roocks Online Chess</h1>
+
     <div class="buttons">
+      <!-- place the onclick commands in JS!!! -->
       <button class="button" onclick="showboard()">One Player</button>
       <button class="button" onclick="showboard()">Two Player</button>
     </div>
-    <br></br>
-    <div class=flex-container id=board hidden>
 
+    <br></br>
+
+    <div class="flex-container" id="board" hidden>
     </div>
-    <script src="chess-board.js"></script>
-    <script src="piece-moves.js"></script>
+    
   </body>
 </html>
