@@ -15,7 +15,7 @@ function checkPiece(elem) {
     // }
     switch (piece[1]) {
         case "p":
-            movePawns(elem);
+            movePawn(elem);
             break;
         case "r":
             moveRook(elem);
@@ -35,7 +35,7 @@ function checkPiece(elem) {
     }
 }
 
-function movePawns(piece) {
+function movePawn(piece) {
 
 }
 
