@@ -15,47 +15,47 @@ function checkPiece(elem) {
     // }
     switch (piece[1]) {
         case "p":
-            movePawn(elem);
+            movePawn(elem, pieceID);
             break;
         case "r":
-            moveRook(elem);
+            moveRook(elem, pieceID);
             break;
         case "n":
-            moveKnight(elem);
+            moveKnight(elem, pieceID);
             break;
         case "b":
-            moveBishop(elem);
+            moveBishop(elem, pieceID);
             break;
         case "q":
-            moveQueen(elem);
+            moveQueen(elem, pieceID);
             break;
         case "k":
-            moveKing(elem);
+            moveKing(elem, pieceID);
             break;
     }
 }
 
-function movePawn(piece) {
+function movePawn(piece, ID) {
 
 }
 
-function moveRook (piece) {
+function moveRook(piece, ID) {
     
 }
 
-function moveKnight(piece) {
+function moveKnight(piece, ID) {
     
 }
 
-function moveBishop(piece) {
+function moveBishop(piece, ID) {
     
 }
 
-function moveKing(piece) {
+function moveKing(piece, ID) {
     
 }
 
-function moveQueen(piece) {
+function moveQueen(piece, ID) {
     
 }
 

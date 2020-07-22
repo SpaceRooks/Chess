@@ -31,7 +31,6 @@
                 box.setAttribute("name", i.toString());
                 box.setAttribute("class", "tile");
                 if (color == true) {
-                    
                     box.style.backgroundColor = "#F7F2F0";
                     color = false;
                 } else {
