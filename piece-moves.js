@@ -35,27 +35,27 @@ function checkPiece(elem) {
     }
 }
 
-function movePawns() {
+function movePawns(piece) {
 
 }
 
-function moveRook() {
+function moveRook(piece) {
     
 }
 
-function moveKnight() {
+function moveKnight(piece) {
     
 }
 
-function moveBishop() {
+function moveBishop(piece) {
     
 }
 
-function moveKing() {
+function moveKing(piece) {
     
 }
 
-function moveQueen() {
+function moveQueen(piece) {
     
 }
 
