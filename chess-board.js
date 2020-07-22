@@ -1,8 +1,16 @@
 "use strict";
 
+
+
 (function() {
-    window.addEventListener("load", makeBoard);
+    window.addEventListener("load", playGame);
     
+    function playGame() {
+        makeBoard();
+        // makeTimer():
+        // makePieceJail();
+        // 
+    }
 
 
     const board = document.getElementById("board");
@@ -23,6 +31,7 @@
                 box.setAttribute("name", i.toString());
                 box.setAttribute("class", "tile");
                 if (color == true) {
+                    
                     box.style.backgroundColor = "#F7F2F0";
                     color = false;
                 } else {
@@ -43,7 +52,9 @@
         setBoard();
     }
 
-
+    /**
+     * test test test
+     */
     function setBoard() {
         const n = ["W", "B"];
         const num = ["1", "8"];
