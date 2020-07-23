@@ -25,6 +25,8 @@
 
     function makeBoard() {
         let brd = document.createDocumentFragment();
+        let fBoard = document.createElement("span");
+        fBoard.setAttribute("id", "brd");
         let color = true;
     //   create rows
         for (let i = 1; i < side.length + 1; i++) {
@@ -51,9 +53,10 @@
             } else {
                 color = true;
             }
-            brd.appendChild(row);
+            fBoard.appendChild(row);
         }
     //   add to the board
+        brd.appendChild(fBoard)
         board.appendChild(brd);
         setBoard();
     }
