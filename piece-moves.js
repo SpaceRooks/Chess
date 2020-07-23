@@ -2,10 +2,12 @@
 
 
 let pieceID;
+let spot;
 
 function checkPiece(elem) {
     pieceID = getID(elem);
     let player;
+    spot = elem.parentElement;
     switch (pieceID[0]) {
         case "W":
             player = true;
