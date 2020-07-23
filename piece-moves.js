@@ -1,61 +1,62 @@
-(function() {
-    window.addEventListener("load", function() { document.getElementById("board").addEventListener("click", function() { alert(event.currentTarget)})});
-})();
+"use strict";
+
+
+let pieceID;
 
 function checkPiece(elem) {
-    let pieceID = getID(elem);
+    pieceID = getID(elem);
     let player;
-    // switch (pieceID[0]) {
-    //     case "W":
-    //         player = true;
-    //         break;
-    //     case "B":
-    //         player = false;
-    //         break;
-    // }
+    switch (pieceID[0]) {
+        case "W":
+            player = true;
+            break;
+        case "B":
+            player = false;
+            break;
+    }
     switch (piece[1]) {
         case "p":
-            movePawn(elem, pieceID);
+            movePawns(elem);
             break;
         case "r":
-            moveRook(elem, pieceID);
+            moveRook(elem);
             break;
         case "n":
-            moveKnight(elem, pieceID);
+            moveKnight(elem);
             break;
         case "b":
-            moveBishop(elem, pieceID);
+            moveBishop(elem);
             break;
         case "q":
-            moveQueen(elem, pieceID);
+            moveQueen(elem);
             break;
         case "k":
-            moveKing(elem, pieceID);
+            moveKing(elem);
             break;
     }
 }
 
-function movePawn(piece, ID) {
+function movePawns() {
 
 }
 
-function moveRook (piece, ID) {
+function moveRook() {
     
 }
 
-function moveKnight(piece, ID) {
+function moveKnight() {
     
 }
 
-function moveBishop(piece, ID) {
+function moveBishop() {
     
 }
 
-function moveKing(piece, ID) {
+function moveKing() {
     
 }
 
-function moveQueen(piece, ID) {
+function moveQueen() {
     
 }
 

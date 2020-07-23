@@ -87,12 +87,12 @@
                         img.setAttribute("name", "bishop");
                         img.setAttribute("id", n[i] + "b");
                         break;
-                    case side[3] + num[i]:
+                    case side[4] + num[i]:
                         src = srcP + n[i].toLowerCase() + "Q.png";
                         img.setAttribute("name", "queen");
                         img.setAttribute("id", n[i] + "q");
                         break;
-                    case side[4] + num[i]:
+                    case side[3] + num[i]:
                         src = srcP + n[i].toLowerCase() + "K.png";
                         img.setAttribute("name", "king");
                         img.setAttribute("id", n[i] + "k");
