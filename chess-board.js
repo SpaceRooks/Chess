@@ -6,6 +6,7 @@
     const board = document.getElementById("board");
     const side = ["a", "b", "c", "d", "e", "f", "g", "h"];
     let displayBoard = false;
+    let moveCounter = 0;
 
 
     function playGame() {
