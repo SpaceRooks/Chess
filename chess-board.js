@@ -3,18 +3,16 @@
 
 
 (function() {
-    window.addEventListener("load", playGame);
-    
+    const board = document.getElementById("board");
+    const side = ["a", "b", "c", "d", "e", "f", "g", "h"];
+
+
     function playGame() {
         makeBoard();
         // makeTimer():
         // makePieceJail();
         // 
     }
-
-
-    const board = document.getElementById("board");
-    const side = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
     function makeBoard() {
         let brd = document.createDocumentFragment();
@@ -136,4 +134,5 @@
             t++;
         }
     }
+    window.addEventListener("load", playGame);
 })();

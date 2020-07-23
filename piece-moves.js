@@ -1,5 +1,5 @@
 (function() {
-    document.getElementById("board").addEventListener("click", function() { checkPiece(event.target)});
+    window.addEventListener("load", function() { document.getElementById("board").addEventListener("click", function() { alert(event.currentTarget)})});
 })();
 
 function checkPiece(elem) {
@@ -39,7 +39,7 @@ function movePawn(piece, ID) {
 
 }
 
-function moveRook(piece, ID) {
+function moveRook (piece, ID) {
     
 }
 
