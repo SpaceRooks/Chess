@@ -7,7 +7,7 @@ let spot;
 function checkPiece(elem) {
     pieceID = getID(elem);
     let player;
-    spot = elem.parentElement;
+    spot = elem.parentElement.id;
     switch (pieceID[0]) {
         case "W":
             player = true;
@@ -38,27 +38,27 @@ function checkPiece(elem) {
     }
 }
 
-function movePawns() {
+function movePawns(piece) {
 
 }
 
-function moveRook() {
+function moveRook(piece) {
     
 }
 
-function moveKnight() {
+function moveKnight(piece) {
     
 }
 
-function moveBishop() {
+function moveBishop(piece) {
     
 }
 
-function moveKing() {
-    
+function moveKing(piece) {
+    //check all possible moves
 }
 
-function moveQueen() {
+function moveQueen(piece) {
     
 }
 
