@@ -75,7 +75,7 @@
         let src;
     //   setup pieces based on color
         for (let i = 0; i < all.length; i++) {
-            let srcP = "Chess_Peices/" + n[i] + "/";
+            let srcP = "Chess_Pieces/" + n[i] + "/";
     //   setup each piece
             for (let t = 0; t < all[i].length; t++) {
                 let img = document.createElement("img");
@@ -131,13 +131,13 @@
                 let bs = i + 1;
     //   choose sorce and id
                 if (t == 0) {
-                    src = "Chess_Peices/W/wP.png";
+                    src = "Chess_Pieces/W/wP.png";
                     let tile = wPs[i];
                     img.setAttribute("src", src);
                     img.setAttribute("id", "wp" + bs.toString() + "");
                     tile.appendChild(img);
                 } else {
-                    src = "Chess_Peices/B/bP.png";
+                    src = "Chess_Pieces/B/bP.png";
                     let tile = bPs[i];
                     img.setAttribute("src", src);
                     img.setAttribute("id", "bp" + bs.toString() + "");
