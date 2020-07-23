@@ -5,13 +5,22 @@
 (function() {
     const board = document.getElementById("board");
     const side = ["a", "b", "c", "d", "e", "f", "g", "h"];
+    let displayBoard = false;
 
 
     function playGame() {
-        makeBoard();
+        if(displayBoard == true) {
+            displayBoard = false;
+            document.getElementById("brd").remove();
+        }
+        else {
+            makeBoard();
+            displayBoard = true;
         // makeTimer():
         // makePieceJail();
         // 
+        }
+        
     }
 
     function makeBoard() {
@@ -134,5 +143,6 @@
             t++;
         }
     }
-    window.addEventListener("load", playGame);
+    document.getElementById("onePlayerButton").addEventListener("click", playGame);
+    document.getElementById("twoPlayerButton").addEventListener("click", playGame);
 })();
