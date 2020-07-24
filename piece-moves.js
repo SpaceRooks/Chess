@@ -1,11 +1,12 @@
 "use strict";
 
-
-let pieceID;
 let spot;
+let moves;
+let takes;
+
 
 function checkPiece(elem) {
-    pieceID = getID(elem);
+    let pieceID = getID(elem);
     let player;
     spot = elem.parentElement.id;
     switch (pieceID[0]) {
@@ -18,47 +19,70 @@ function checkPiece(elem) {
     }
     switch (piece[1]) {
         case "p":
-            movePawns(elem);
+            movePawns(elem, pieceID);
             break;
         case "r":
-            moveRook(elem);
+            moveRook(elem, pieceID);
             break;
         case "n":
-            moveKnight(elem);
+            moveKnight(elem, pieceID);
             break;
         case "b":
-            moveBishop(elem);
+            moveBishop(elem, pieceID);
             break;
         case "q":
-            moveQueen(elem);
+            moveQueen(elem, pieceID);
             break;
         case "k":
-            moveKing(elem);
+            moveKing(elem, pieceID);
             break;
     }
 }
 
-function movePawns(piece) {
+function movePawns(piece, cSpot) {
 
 }
 
-function moveRook(piece) {
+function moveRook(piece, cSpot) {
     
 }
 
-function moveKnight(piece) {
+function moveKnight(piece, cSpot) {
     
 }
 
-function moveBishop(piece) {
+function moveBishop(piece, cSpot) {
     
 }
 
-function moveKing(piece) {
+function moveKing(piece, cSpot) {
     //check all possible moves
+    let tile = getID(cSpot);
+    let n = side.indexOf(tile[0]);
+    let a = [side[n-1], side[n], side[n+1]];
+    let u = parseInt(tile[1]);
+    let b = [u-1, u, u+1].toString();
+    let c = [a, b];
+    for (let i = 0; i < c.length; i++) {
+        for (let t = 0; t < c[i].length; t++) {
+            let m = document.getElementById(c[0][t] + c[1][t]);
+            if (m.id == piece.id) {
+                break;
+            } else if (m.hasChildNodes == true) {
+                if (m.childNodes[0].getID()[0] == tile[0]) {
+                    break;
+                } else {
+                    takes.push(m);
+                }
+            } else {
+                moves.push(m);
+            }
+        }
+    }
+
 }
 
-function moveQueen(piece) {
+function moveQueen(piece, cSpot) {
     
 }
 
