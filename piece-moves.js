@@ -34,7 +34,7 @@ function checkPiece(elem) {
             moveQueen(elem, pieceID);
             break;
         case "k":
-            moveKing(elem, pieceID);
+            checkKing(elem, pieceID);
             break;
     }
 }
@@ -55,7 +55,7 @@ function moveBishop(piece, cSpot) {
     
 }
 
-function moveKing(piece, cSpot) {
+function checkKing(piece, cSpot) {
     //check all possible moves
     let tile = getID(cSpot);
     let n = side.indexOf(tile[0]);
@@ -73,13 +73,19 @@ function moveKing(piece, cSpot) {
                     break;
                 } else {
                     takes.push(m);
+                    moves.push(m);
                 }
             } else {
                 moves.push(m);
             }
         }
     }
+    moves.array.forEach(element => { document.getElementById(element).addEventListener("click", moveKing()) });
+}
 
+function moveKing() {
+    
+    
 }
 
 function moveQueen(piece, cSpot) {
