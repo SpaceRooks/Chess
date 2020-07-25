@@ -80,11 +80,13 @@ function checkKing(piece, cSpot) {
             }
         }
     }
-    moves.array.forEach(element => { document.getElementById(element).addEventListener("click", moveKing()) });
+    moves.forEach(element => { document.getElementById(element).addEventListener("click", moveKing(event.target)) });
 }
 
-function moveKing() {
-    
+function moveKing(to) {
+    let piece = spot.childNodes;
+    to.appendChild(piece[0]);
+    spot.removeChild(piece[0]);
     
 }
 

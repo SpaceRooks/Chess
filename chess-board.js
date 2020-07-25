@@ -122,6 +122,7 @@
                 img.setAttribute("src", src);
                 img.setAttribute("class", "piece");
                 piece.appendChild(img);
+                piece.addEventListener("click", checkPiece(event.target));
             }
         }
     }
