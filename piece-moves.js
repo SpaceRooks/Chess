@@ -1,8 +1,10 @@
 "use strict";
 
+const side = ["h", "g", "f", "e", "d", "c", "b", "a"];
+
 let spot;
-let moves;
-let takes;
+let moves = [];
+let takes = [];
 
 
 function checkPiece(elem) {
@@ -40,7 +42,7 @@ function checkPiece(elem) {
 }
 
 function checkPawn(piece, cSpot) {
-    let tile = getID(cSpot);
+    let tile = getID(piece.parentElement);
     let n = side.indexOf(tile[0]);
     let a = [side[n-1], side[n], side[n+1]];
     let u = parseInt(tile[1]);
@@ -58,7 +60,7 @@ function checkPawn(piece, cSpot) {
             moves.push(m);
         }
     }
-    moves.forEach(element => { document.getElementById(element).addEventListener("click", movePiece(event.target)) });
+    moves.forEach(element => { document.getElementById(element.id).addEventListener("click", movePiece(event.target)) });
 }
 
 function checkRook(piece, cSpot) {
@@ -79,7 +81,7 @@ function checkQueen(piece, cSpot) {
 
 function checkKing(piece, cSpot) {
     //check all possible moves
-    let tile = getID(cSpot);
+    let tile = getID(piece.parentElement);
     let n = side.indexOf(tile[0]);
     let a = [side[n-1], side[n], side[n+1]];
     let u = parseInt(tile[1]);
@@ -102,13 +104,13 @@ function checkKing(piece, cSpot) {
             }
         }
     }
-    moves.forEach(element => { document.getElementById(element).addEventListener("click", movePiece(event.target)) });
+    moves.forEach(element => { (function () {document.getElementById(element.id).addEventListener("click", movePiece(event.target))})});
 }
 
 function movePiece(to) {
-    let piece = spot.childNodes;
+    let piece = document.getElementById(spot).childNodes;
     to.appendChild(piece[0]);
-    spot.removeChild(piece[0]);
+    document.getElelementById(spot).removeChild(piece[0]);
     
 }
 
