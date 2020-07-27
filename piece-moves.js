@@ -17,21 +17,21 @@ function checkPiece(elem) {
             player = false;
             break;
     }
-    switch (piece[1]) {
+    switch (pieceID[1]) {
         case "p":
-            movePawns(elem, pieceID);
+            checkPawn(elem, pieceID);
             break;
         case "r":
-            moveRook(elem, pieceID);
+            checkRook(elem, pieceID);
             break;
         case "n":
-            moveKnight(elem, pieceID);
+            checkKnight(elem, pieceID);
             break;
         case "b":
-            moveBishop(elem, pieceID);
+            checkBishop(elem, pieceID);
             break;
         case "q":
-            moveQueen(elem, pieceID);
+            checkQueen(elem, pieceID);
             break;
         case "k":
             checkKing(elem, pieceID);
@@ -39,20 +39,42 @@ function checkPiece(elem) {
     }
 }
 
-function movePawns(piece, cSpot) {
-
+function checkPawn(piece, cSpot) {
+    let tile = getID(cSpot);
+    let n = side.indexOf(tile[0]);
+    let a = [side[n-1], side[n], side[n+1]];
+    let u = parseInt(tile[1]);
+    let b = u + 1;
+    for (let i = 0; i < a.length; i++) {
+        let m = document.getElementById(a[i] + b.toString());
+        if (m.hasChildNodes == true) {
+            if (m.childNodes[0].getID()[0] == tile[0]) {
+                break;
+            } else {
+                takes.push(m);
+                moves.push(m);
+            }
+        } else {
+            moves.push(m);
+        }
+    }
+    moves.forEach(element => { document.getElementById(element).addEventListener("click", movePiece(event.target)) });
 }
 
-function moveRook(piece, cSpot) {
+function checkRook(piece, cSpot) {
     
 }
 
-function moveKnight(piece, cSpot) {
+function checkKnight(piece, cSpot) {
     
 }
 
-function moveBishop(piece, cSpot) {
+function checkBishop(piece, cSpot) {
     
+}
+
+function checkQueen(piece, cSpot) {
+
 }
 
 function checkKing(piece, cSpot) {
@@ -80,17 +102,13 @@ function checkKing(piece, cSpot) {
             }
         }
     }
-    moves.forEach(element => { document.getElementById(element).addEventListener("click", moveKing(event.target)) });
+    moves.forEach(element => { document.getElementById(element).addEventListener("click", movePiece(event.target)) });
 }
 
-function moveKing(to) {
+function movePiece(to) {
     let piece = spot.childNodes;
     to.appendChild(piece[0]);
     spot.removeChild(piece[0]);
-    
-}
-
-function moveQueen(piece, cSpot) {
     
 }
 

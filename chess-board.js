@@ -122,7 +122,7 @@
                 img.setAttribute("src", src);
                 img.setAttribute("class", "piece");
                 piece.appendChild(img);
-                piece.addEventListener("click", checkPiece(event.target));
+                piece.addEventListener("click", function() { checkPiece(event.target)});
             }
         }
     }
@@ -137,20 +137,22 @@
             for (let i = 0; i < wPs.length; i++) {  
                 let img = document.createElement("img");
                 let bs = i + 1;
+                let tile;
     //   choose sorce and id
                 if (t == 0) {
                     src = "Chess_Pieces/W/wP.png";
-                    let tile = wPs[i];
+                    tile = wPs[i];
                     img.setAttribute("src", src);
                     img.setAttribute("id", "wp" + bs.toString() + "");
                     tile.appendChild(img);
                 } else {
                     src = "Chess_Pieces/B/bP.png";
-                    let tile = bPs[i];
+                    tile = bPs[i];
                     img.setAttribute("src", src);
                     img.setAttribute("id", "bp" + bs.toString() + "");
                     tile.appendChild(img);
                 }
+                tile.addEventListener("click", function() { checkPiece(event.target)});
             }
             t++;
         }
