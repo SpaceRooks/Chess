@@ -1,0 +1,136 @@
+/* 	
+    File Name: site_styles.css
+    Authors: 
+        Shreya Karnati
+        Greg Carter
+        Amanda Holt
+    Date: 
+        2020.07.08
+
+    + on this page we will design the 
+    base layout for the main page of our
+    chess playing website.
+*/
+
+
+
+/*
+*
+* HTML Page Styles
+*
+*/
+
+html {
+    background-color: hsla(40.2, 100%, 75.1%, 0.66); 
+    color:hsl(45, 9.7%, 21%); 
+    text-align: left;
+    padding: 2px;	
+}
+
+.flex-container {
+    display: flex;
+    height: 640px;
+    width: 640px;
+}
+
+
+/*
+*
+* Body Styles
+*
+*/
+
+body {
+    background-color: rgb(224, 181, 129);
+}
+
+
+
+/*
+*
+* Header Styles
+*
+*/
+h1 {
+    color: black;
+    font-size: 72px;
+    text-align: center;
+}
+
+
+/*
+*
+* Navigation Styles
+*
+*/
+
+
+
+
+/*
+*
+* Main Styles
+*
+*/
+
+div {
+    display: inline-flex;
+    padding: none;
+}
+
+button {
+    border: none;
+    background-color: rgb(224, 201, 245);
+    color:rgb(111, 29, 150);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: rgb(248, 168, 199);
+    color: rgb(228, 48, 138);
+}
+
+#board {
+    display: inline-block;
+    width: 640px;
+    height: 640px;
+}
+
+
+/*
+*
+* JavaScript Styles
+*
+*/
+
+.rank {
+  height: 80px;
+  width: 640px;
+  margin-top: -4px;
+}
+
+.tile {
+  height: 80px;
+  width: 80px;
+}
+
+
+
+
+
+
+
+
