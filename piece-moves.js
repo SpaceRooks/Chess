@@ -60,7 +60,7 @@ function checkPawn(piece, cSpot) {
             moves.push(m);
         }
     }
-    moves.forEach(element => { document.getElementById(element.id).addEventListener("click", movePiece(event.target)) });
+    moves.forEach(element => { element.addEventListener("click", movePiece)});
 }
 
 function checkRook(piece, cSpot) {
@@ -90,28 +90,33 @@ function checkKing(piece, cSpot) {
     for (let i = 0; i < c.length; i++) {
         for (let t = 0; t < c[i].length; t++) {
             let m = document.getElementById(c[0][t] + c[1][t]);
-            if (m.id == piece.id) {
+            if (m == null || m == undefined) {
                 break;
-            } else if (m.hasChildNodes == true) {
-                if (m.childNodes[0].getID()[0] == tile[0]) {
+            } else {
+                if (m.id == piece.id) {
                     break;
+                } else if (m.hasChildNodes == true) {
+                    if (m.childNodes[0].getID()[0] == tile[0]) {
+                        break;
+                    } else {
+                        takes.push(m);
+                        moves.push(m);
+                    }
                 } else {
-                    takes.push(m);
                     moves.push(m);
                 }
-            } else {
-                moves.push(m);
             }
         }
     }
-    moves.forEach(element => { (function () {document.getElementById(element.id).addEventListener("click", movePiece(event.target))})});
+    moves.forEach(element => { element.addEventListener("click", movePiece)});
 }
 
 function movePiece(to) {
     let piece = document.getElementById(spot).childNodes;
-    to.appendChild(piece[0]);
-    document.getElelementById(spot).removeChild(piece[0]);
-    
+    moves.forEach(element => { element.onClick = undefined });
+    to.target.appendChild(piece[0]);
+    moves= [];
+    takes = [];
 }
 
 function getID(img) {
