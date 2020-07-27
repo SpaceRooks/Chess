@@ -1,3 +1,16 @@
+/* 	
+    File Name: site_styles.css
+    Authors: 
+        Shreya Karnati
+        Greg Carter
+        Amanda Holt
+    Date: 
+        2020.07.08
+
+    + on this page we will design the 
+    base layout for the main page of our
+    chess playing website.
+*/
 .flex-container {
   display: flex;
   height: 640px;
