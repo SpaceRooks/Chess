@@ -116,7 +116,7 @@ function checkKing(piece, cSpot) {
 
 function movePiece(to) {
     let piece = document.getElementById(spot).childNodes;
-    moves.forEach(element => { element.onClick = undefined });
+    moves.forEach(element => { element.removeEventListener("click", movePiece) });
     to.target.appendChild(piece[0]);
     moves= [];
     takes = [];
