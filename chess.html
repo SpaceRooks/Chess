@@ -1,26 +1,75 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
+<!-- 
+    Authors:
+        Shreya Karnati
+        Greg Carter
+        Amanda Holt
+    Date:
+        2020.07.08
+-->
+
   <head>
     <meta charset="utf-8">
-    <title>SpaceRooks</title>
+    <title>SpaceRooks Spectacular Chess Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="style-reset.css" rel="stylesheet">
     <link rel="stylesheet" href="chess.css">
-   <!-- <script src="jquery-3.2.1.min.js"></script> --> 
+   
+    <!-- Not sure what this is ~AH
+      <script src="jquery-3.2.1.min.js"></script> --> 
+
+    <!-- if we want to add fonts or other sytle sheets ~AH
+    <link href="" rel="stylesheet"> -->
   </head>
 
   <body>
-    <h1>Space Roocks Online Chess</h1>
 
-    <div class="buttons">
-      <button id="onePlayerButton">One Player</button>
-      <button id="twoPlayerButton">Two Player</button>
-    </div>
+    <!--Page Title / Head -->
+    <header>
+      <h1>SpaceRooks Spectacular Chess Game</h1>
+    </header>
 
-    <br></br>
+    <!-- Navigation Bar -->
+    <nav>
+      <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="">About</a></li>
+          <li><a href="">Contact</a></li>
+      </ul>
+    </nav>
 
-    <div class="flex-container" id="board">
-    </div>
-    <script src="chess-board.js"></script>
-    <script src="piece-moves.js"></script>
+    <!--Main section of Body -->
+    <main>
+      <div class="buttons">
+        <button id="onePlayerButton">One Player</button>
+        <button id="twoPlayerButton">Two Player</button>
+      </div>
+
+      <div class="flex-container" id="board">
+      </div>
+      <script src="chess-board.js"></script>
+      <script src="piece-moves.js"></script>
+    </main>
+
+    <!--Left aside section -->
+    <aside id="aside-left">
+      <h4>Information</h4>
+    </aside>
+
+    <!--Right aside section -->
+    <aside id="aside-right">
+      <h3>Game Tally</h3>
+    </aside>
+
+    <!--Footer  -->
+    <footer>
+        <p>We hope you've enjoyed visiting our Spectacular Chess Game!</p>
+    </footer>
+
   </body>
 </html>
+
+<!-- -->
