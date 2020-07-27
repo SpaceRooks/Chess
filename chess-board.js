@@ -121,8 +121,8 @@
     //   add it to the board
                 img.setAttribute("src", src);
                 img.setAttribute("class", "piece");
+                img.addEventListener("click", checkPiece);
                 piece.appendChild(img);
-                img.addEventListener("click", function() { checkPiece(event.target)});
             }
         }
     }
@@ -152,7 +152,7 @@
                     img.setAttribute("id", "bp" + bs.toString() + "");
                     tile.appendChild(img);
                 }
-                tile.addEventListener("click", function() { checkPiece(event.target)});
+                img.addEventListener("click", checkPiece);
             }
             t++;
         }

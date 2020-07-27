@@ -8,9 +8,9 @@ let takes = [];
 
 
 function checkPiece(elem) {
-    let pieceID = getID(elem);
+    let pieceID = getID(elem.target);
     let player;
-    spot = elem.parentElement.id;
+    spot = elem.target.parentElement.id;
     switch (pieceID[0]) {
         case "W":
             player = true;
@@ -21,22 +21,22 @@ function checkPiece(elem) {
     }
     switch (pieceID[1]) {
         case "p":
-            checkPawn(elem, pieceID);
+            checkPawn(elem.target, pieceID);
             break;
         case "r":
-            checkRook(elem, pieceID);
+            checkRook(elem.target, pieceID);
             break;
         case "n":
-            checkKnight(elem, pieceID);
+            checkKnight(elem.target, pieceID);
             break;
         case "b":
-            checkBishop(elem, pieceID);
+            checkBishop(elem.target, pieceID);
             break;
         case "q":
-            checkQueen(elem, pieceID);
+            checkQueen(elem.target, pieceID);
             break;
         case "k":
-            checkKing(elem, pieceID);
+            checkKing(elem.target, pieceID);
             break;
     }
 }
@@ -49,15 +49,19 @@ function checkPawn(piece, cSpot) {
     let b = u + 1;
     for (let i = 0; i < a.length; i++) {
         let m = document.getElementById(a[i] + b.toString());
-        if (m.hasChildNodes == true) {
-            if (m.childNodes[0].getID()[0] == tile[0]) {
-                break;
+        if (m == null || m == undefined) {
+            continue;
+        } else {
+            if (m.hasChildNodes == true) {
+                if (m.childNodes[0].getID()[0] == tile[0]) {
+                    break;
+                } else {
+                    takes.push(m);
+                    moves.push(m);
+                }
             } else {
-                takes.push(m);
                 moves.push(m);
             }
-        } else {
-            moves.push(m);
         }
     }
     moves.forEach(element => { element.addEventListener("click", movePiece)});
@@ -85,13 +89,12 @@ function checkKing(piece, cSpot) {
     let n = side.indexOf(tile[0]);
     let a = [side[n-1], side[n], side[n+1]];
     let u = parseInt(tile[1]);
-    let b = [u-1, u, u+1].toString();
-    let c = [a, b];
-    for (let i = 0; i < c.length; i++) {
-        for (let t = 0; t < c[i].length; t++) {
-            let m = document.getElementById(c[0][t] + c[1][t]);
+    let b = [(u-1).toString(), (u).toString(), (u+1).toString()];
+    for (let i = 0; i < a.length; i++) {
+        for (let t = 0; t < b.length; t++) {
+            let m = document.getElementById(a[i] + b[t]);
             if (m == null || m == undefined) {
-                break;
+                continue;
             } else {
                 if (m.id == piece.id) {
                     break;
@@ -124,7 +127,7 @@ function getID(img) {
     let parA = imgID.slice(0, 1);
     let parB = imgID.slice(1, 2);
     let parC = imgID.slice(2, 3);
-    if (parC == null || parC == undefined) {
+    if (parC == null || parC == undefined || parC == "") {
         return [parA, parB];
     } else {
         return [parA, parB, parC];
