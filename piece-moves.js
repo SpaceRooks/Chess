@@ -39,6 +39,7 @@ function checkPiece(elem) {
             checkKing(elem.target, pieceID);
             break;
     }
+    moves.forEach(element => { element.addEventListener("click", movePiece)});
 }
 
 function checkPawn(piece, cSpot) {
@@ -46,7 +47,12 @@ function checkPawn(piece, cSpot) {
     let n = side.indexOf(tile[0]);
     let a = [side[n-1], side[n], side[n+1]];
     let u = parseInt(tile[1]);
-    let b = u + 1;
+    let b;
+    if (getID(piece)[0] == "W") {
+        b = u + 1;
+    } else {
+        b = u - 1;
+    }
     for (let i = 0; i < a.length; i++) {
         let m = document.getElementById(a[i] + b.toString());
         if (m == null || m == undefined) {
@@ -64,7 +70,6 @@ function checkPawn(piece, cSpot) {
             }
         }
     }
-    moves.forEach(element => { element.addEventListener("click", movePiece)});
 }
 
 function checkRook(piece, cSpot) {
@@ -96,22 +101,23 @@ function checkKing(piece, cSpot) {
             if (m == null || m == undefined) {
                 continue;
             } else {
-                if (m.id == piece.id) {
-                    break;
-                } else if (m.hasChildNodes == true) {
-                    if (m.childNodes[0].getID()[0] == tile[0]) {
-                        break;
+                if (m.id == piece.parentElement.id) {
+                    continue;
+                } else {
+                    if (m.hasChildNodes() == true) {
+                        if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
+                            break;
+                        } else {
+                            takes.push(m);
+                            moves.push(m);
+                        }
                     } else {
-                        takes.push(m);
                         moves.push(m);
                     }
-                } else {
-                    moves.push(m);
                 }
             }
         }
     }
-    moves.forEach(element => { element.addEventListener("click", movePiece)});
 }
 
 function movePiece(to) {

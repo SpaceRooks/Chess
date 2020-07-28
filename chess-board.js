@@ -2,10 +2,7 @@
 
 (function() {
     const board = document.getElementById("board");
-    // const side = ["a", "b", "c", "d", "e", "f", "g", "h"]; 
-    /* since we set up our board with white on top it reverses the column order.
-    1a should be a white rook in a black square so I revered the letters as this
-    is the easiest way to solve the problem */
+    // ok it works fine
     const side = ["h", "g", "f", "e", "d", "c", "b", "a"]; 
 
     let displayBoard = false;
@@ -143,13 +140,13 @@
                     src = "Chess_Pieces/W/wP.png";
                     tile = wPs[i];
                     img.setAttribute("src", src);
-                    img.setAttribute("id", "wp" + bs.toString() + "");
+                    img.setAttribute("id", "Wp" + bs.toString() + "");
                     tile.appendChild(img);
                 } else {
                     src = "Chess_Pieces/B/bP.png";
                     tile = bPs[i];
                     img.setAttribute("src", src);
-                    img.setAttribute("id", "bp" + bs.toString() + "");
+                    img.setAttribute("id", "Bp" + bs.toString() + "");
                     tile.appendChild(img);
                 }
                 img.addEventListener("click", checkPiece);
