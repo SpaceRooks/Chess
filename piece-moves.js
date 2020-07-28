@@ -81,7 +81,58 @@ function checkKnight(piece, cSpot) {
 }
 
 function checkBishop(piece, cSpot) {
-    
+    let tile = getID(piece.parentElement);
+    let n = side.indexOf(tile[0]);
+    let a = [side[n-3], side[n-2], side[n-1], side[n], side[n+1], side[n+2], side[n+3]];
+    let u = parseInt(tile[1]);
+    let b = [(u-3).toString(), (u-2).toString(), (u-1).toString(), (u).toString(), (u+1).toString(), (u+2).toString(), (u+3).toString()];
+    let c = [a, b];
+    for (let i = 0; i < c.length; i++) {
+        for (let t = 0; t < c[i].length; t++) {
+            let m = document.getElementById(c[0][t] + c[1][t]);
+            let p = document.getElementById(c[0][c[0].length - 1 - t] + c[1][t]);
+            part1: {
+                if (m == null || m == undefined) {
+                    break part1;
+                } else {
+                    if (m.id == piece.parentElement.id) {
+                        break part1;
+                    } else {
+                        if (m.hasChildNodes() == true) {
+                            if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
+                                break part1;
+                            } else {
+                                takes.push(m);
+                                moves.push(m);
+                            }
+                        } else {
+                            moves.push(m);
+                        }
+                    }
+                }
+            }
+            part2: {
+                if (p == undefined || p == undefined) {
+                    break part2;
+                } else {
+                    if (p.id == piece.parentElement.id) {
+                        break part2;
+                    } else {
+                        if (p.hasChildNodes() == true) {
+                            if (getID(p.childNodes[0])[0] == getID(piece)[0]) {
+                                break part2;
+                            } else {
+                                takes.push(p);
+                                moves.push(p);
+                            }
+                        } else {
+                            moves.push(p);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 function checkQueen(piece, cSpot) {
