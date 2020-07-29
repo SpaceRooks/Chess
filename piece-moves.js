@@ -40,6 +40,7 @@ function checkPiece(elem) {
             break;
     }
     moves.forEach(element => { element.addEventListener("click", movePiece)});
+    // window.addEventListener("")
 }
 
 function checkPawn(piece, cSpot) {
@@ -73,34 +74,50 @@ function checkPawn(piece, cSpot) {
 }
 
 function checkRook(piece, cSpot) {
-    
-}
-
-function checkKnight(piece, cSpot) {
-    
-}
-
-function checkBishop(piece, cSpot) {
     let tile = getID(piece.parentElement);
     let n = side.indexOf(tile[0]);
-    let a = [side[n-3], side[n-2], side[n-1], side[n], side[n+1], side[n+2], side[n+3]];
+    let a = side[n];
     let u = parseInt(tile[1]);
-    let b = [(u-3).toString(), (u-2).toString(), (u-1).toString(), (u).toString(), (u+1).toString(), (u+2).toString(), (u+3).toString()];
-    let c = [a, b];
-    for (let i = 0; i < c.length; i++) {
-        for (let t = 0; t < c[i].length; t++) {
-            let m = document.getElementById(c[0][t] + c[1][t]);
-            let p = document.getElementById(c[0][c[0].length - 1 - t] + c[1][t]);
-            part1: {
-                if (m == null || m == undefined) {
+    let b = document.getElementById(tile[1]).childNodes;
+    let i = 0;
+    let move1 = true;
+    let move2 = true;
+    b.forEach(element => {
+        part1: {
+            if (move1 == true) {
+                let m = element;
+                if (m.id == piece.parentElement.id) {
                     break part1;
                 } else {
+                    if (m.hasChildNodes() == true) {
+                        if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
+                            move1 = false;
+                            break part1;
+                        } else {
+                            takes.push(m);
+                            moves.push(m);
+                        }
+                    } else {
+                        moves.push(m);
+                    }
+                }
+            } else {
+                break part1;
+            }
+        }
+        part2: {
+            if (move2 == true) {
+                let m = document.getElementById(a + i.toString());
+                if (m == null || m == undefined) {
+                    break part2;
+                } else {
                     if (m.id == piece.parentElement.id) {
-                        break part1;
+                        break part2;
                     } else {
                         if (m.hasChildNodes() == true) {
                             if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
-                                break part1;
+                                move2 = false;
+                                break part2;
                             } else {
                                 takes.push(m);
                                 moves.push(m);
@@ -110,25 +127,79 @@ function checkBishop(piece, cSpot) {
                         }
                     }
                 }
+            } else {
+                break part2;
             }
-            part2: {
-                if (p == undefined || p == undefined) {
-                    break part2;
-                } else {
-                    if (p.id == piece.parentElement.id) {
-                        break part2;
+        }
+        i++;
+    })
+}
+
+function checkKnight(piece, cSpot) {
+    
+}
+
+function checkBishop(piece, cSpot) {
+    let tile = getID(piece.parentElement);
+    let n = side.indexOf(tile[0]);
+    let a = [side[n-7], side[n-6], side[n-5], side[n-4], side[n-3], side[n-2], side[n-1], side[n], side[n+1], side[n+2], side[n+3], side[n+4], side[n+5], side[n+6], side[n+7]];
+    let u = parseInt(tile[1]);
+    let b = [(u-7).toString(), (u-6).toString(), (u-5).toString(), (u-4).toString(), (u-3).toString(), (u-2).toString(), (u-1).toString(), (u).toString(), (u+1).toString(), (u+2).toString(), (u+3).toString(), (u+4).toString(), (u+5).toString(), (u+6).toString(), (u+7).toString()];
+    let c = [a, b];
+    let move1 = true;
+    let move2 = true;
+    for (let i = 0; i < c.length; i++) {
+        for (let t = 0; t < c[i].length; t++) {
+            let m = document.getElementById(c[0][t] + c[1][t]);
+            let p = document.getElementById(c[0][c[0].length - 1 - t] + c[1][t]);
+            part1: {
+                if (move1 == true) {
+                    if (m == null || m == undefined) {
+                        break part1;
                     } else {
-                        if (p.hasChildNodes() == true) {
-                            if (getID(p.childNodes[0])[0] == getID(piece)[0]) {
-                                break part2;
-                            } else {
-                                takes.push(p);
-                                moves.push(p);
-                            }
+                        if (m.id == piece.parentElement.id) {
+                            break part1;
                         } else {
-                            moves.push(p);
+                            if (m.hasChildNodes() == true) {
+                                if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
+                                    move1 = false;
+                                    break part1;
+                                } else {
+                                    takes.push(m);
+                                    moves.push(m);
+                                }
+                            } else {
+                                moves.push(m);
+                            }
                         }
                     }
+                } else {
+                    break part1;
+                }
+            }
+            part2: {
+                if (move2 == true) {
+                    if (p == undefined || p == undefined) {
+                        break part2;
+                    } else {
+                        if (p.id == piece.parentElement.id) {
+                            break part2;
+                        } else {
+                            if (p.hasChildNodes() == true) {
+                                if (getID(p.childNodes[0])[0] == getID(piece)[0]) {
+                                    move2 = false;
+                                    break part2;
+                                } else {
+                                    takes.push(p);
+                                    moves.push(p);
+                                }
+                            } else {
+                                moves.push(p);
+                            }
+                        }
+                    }
+                } else {
+                    break part2;
                 }
             }
         }
@@ -136,7 +207,122 @@ function checkBishop(piece, cSpot) {
 }
 
 function checkQueen(piece, cSpot) {
-
+    let tile = getID(piece.parentElement);
+    let n = side.indexOf(tile[0]);
+    let a = [side[n-7], side[n-6], side[n-5], side[n-4], side[n-3], side[n-2], side[n-1], side[n], side[n+1], side[n+2], side[n+3], side[n+4], side[n+5], side[n+6], side[n+7]];
+    let u = parseInt(tile[1]);
+    let b = [(u-7).toString(), (u-6).toString(), (u-5).toString(), (u-4).toString(), (u-3).toString(), (u-2).toString(), (u-1).toString(), (u).toString(), (u+1).toString(), (u+2).toString(), (u+3).toString(), (u+4).toString(), (u+5).toString(), (u+6).toString(), (u+7).toString()];
+    let c = [a, b];
+    let move1 = true;
+    let move2 = true;
+    b.forEach(element => {
+        part1: {
+            if (move1 == true) {
+                let m = element;
+                if (m.id == piece.parentElement.id) {
+                    break part1;
+                } else {
+                    if (m.hasChildNodes() == true) {
+                        if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
+                            move1 = false;
+                            break part1;
+                        } else {
+                            takes.push(m);
+                            moves.push(m);
+                        }
+                    } else {
+                        moves.push(m);
+                    }
+                }
+            } else {
+                break part1;
+            }
+        }
+        part2: {
+            if (move2 == true) {
+                let m = document.getElementById(a + i.toString());
+                if (m == null || m == undefined) {
+                    break part2;
+                } else {
+                    if (m.id == piece.parentElement.id) {
+                        break part2;
+                    } else {
+                        if (m.hasChildNodes() == true) {
+                            if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
+                                move2 = false;
+                                break part2;
+                            } else {
+                                takes.push(m);
+                                moves.push(m);
+                            }
+                        } else {
+                            moves.push(m);
+                        }
+                    }
+                }
+            } else {
+                break part2;
+            }
+        }
+        i++;
+    })
+    let a = side[n];
+    let u = parseInt(tile[1]);
+    let b = document.getElementById(tile[1]).childNodes;
+    let l = 0;
+    let move3 = true;
+    let move4 = true;
+    b.forEach(element => {
+        part3: {
+            if (move3 == true) {
+                let m = element;
+                if (m.id == piece.parentElement.id) {
+                    break part3;
+                } else {
+                    if (m.hasChildNodes() == true) {
+                        if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
+                            move3 = false;
+                            break part3;
+                        } else {
+                            takes.push(m);
+                            moves.push(m);
+                        }
+                    } else {
+                        moves.push(m);
+                    }
+                }
+            } else {
+                break part3;
+            }
+        }
+        part4: {
+            if (move4 == true) {
+                let m = document.getElementById(a + l.toString());
+                if (m == null || m == undefined) {
+                    break part4;
+                } else {
+                    if (m.id == piece.parentElement.id) {
+                        break part4;
+                    } else {
+                        if (m.hasChildNodes() == true) {
+                            if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
+                                move4 = false;
+                                break part4;
+                            } else {
+                                takes.push(m);
+                                moves.push(m);
+                            }
+                        } else {
+                            moves.push(m);
+                        }
+                    }
+                }
+            } else {
+                break part4;
+            }
+        }
+        l++;
+    })
 }
 
 function checkKing(piece, cSpot) {
