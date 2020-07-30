@@ -22,6 +22,16 @@
         
     }
 
+    function colorTurn() {
+        moveCounter += 1;
+        if(moveCounter % 2 == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     function makeBoard() {
         let brd = document.createDocumentFragment();
         let fBoard = document.createElement("span");
