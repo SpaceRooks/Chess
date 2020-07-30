@@ -148,45 +148,53 @@ function checkBishop(piece, cSpot) {
     let c = [a, b];
     let move1 = true;
     let move2 = true;
-    for (let i = 0; i < c.length; i++) {
-        for (let t = 0; t < c[i].length; t++) {
-            let m = document.getElementById(c[0][t] + c[1][t]);
-            let p = document.getElementById(c[0][c[0].length - 1 - t] + c[1][t]);
-            part1: {
-                if (move1 == true) {
-                    if (m == null || m == undefined) {
+    for (let i = 0; i < b.length; i++)  {
+        // diagnal
+        part1: {
+            if (move1 == true) {
+                let m = document.getElementById(a[i] + b[i]);
+                if (m == null || m == undefined) {
+                    break part1;
+                } else {
+                    if (m.id == piece.parentElement.id) {
                         break part1;
                     } else {
-                        if (m.id == piece.parentElement.id) {
-                            break part1;
-                        } else {
-                            if (m.hasChildNodes() == true) {
-                                if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
-                                    move1 = false;
-                                    break part1;
-                                } else {
-                                    takes.push(m);
-                                    moves.push(m);
-                                }
+                        if (m.hasChildNodes() == true) {
+                            if (getID(m.childNodes[0])[0] == getID(piece)[0] && parseInt(getID(m)[1]) < parseInt(tile[1])) {
+                                break part1;
+                            } else if (getID(m.childNodes[0])[0] == getID(piece)[0] && parseInt(getID(m)[1]) > parseInt(tile[1])) {
+                                move1 = false;
+                                break part1;
                             } else {
+                                takes.push(m);
                                 moves.push(m);
                             }
+                        } else {
+                            moves.push(m);
                         }
                     }
-                } else {
-                    break part1;
                 }
+            } else {
+                break part1;
             }
-            part2: {
-                if (move2 == true) {
-                    if (p == undefined || p == undefined) {
+        }
+        part2: {
+            //other diagonal
+            if (move2 == true) {
+                let p = document.getElementById(a[a.length - 1 - i] + b[i]);
+                if (p == null || p == undefined) {
+                    break part2;
+                } else {
+                    if (p == null || p == undefined) {
                         break part2;
                     } else {
                         if (p.id == piece.parentElement.id) {
                             break part2;
                         } else {
                             if (p.hasChildNodes() == true) {
-                                if (getID(p.childNodes[0])[0] == getID(piece)[0]) {
+                                if (getID(p.childNodes[0])[0] == getID(piece)[0] && parseInt(getID(p)[1]) < parseInt(tile[1])) {
+                                    break part2;
+                                } else if (getID(p.childNodes[0])[0] == getID(piece)[0] && parseInt(getID(p)[1]) > parseInt(tile[1])) {
                                     move2 = false;
                                     break part2;
                                 } else {
@@ -198,9 +206,9 @@ function checkBishop(piece, cSpot) {
                             }
                         }
                     }
-                } else {
-                    break part2;
                 }
+            } else {
+                break part2;
             }
         }
     }
