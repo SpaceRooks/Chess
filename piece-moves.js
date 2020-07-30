@@ -1,10 +1,10 @@
 "use strict";
 
-const side = ["h", "g", "f", "e", "d", "c", "b", "a"];
-
 let spot;
 let moves = [];
 let takes = [];
+const side = ["h", "g", "f", "e", "d", "c", "b", "a"];
+const sides = side.reverse();
 
 
 function checkPiece(elem) {
@@ -45,8 +45,8 @@ function checkPiece(elem) {
 
 function checkPawn(piece, cSpot) {
     let tile = getID(piece.parentElement);
-    let n = side.indexOf(tile[0]);
-    let a = [side[n-1], side[n], side[n+1]];
+    let n = sides.indexOf(tile[0]);
+    let a = [sides[n-1], sides[n], sides[n+1]];
     let u = parseInt(tile[1]);
     let b;
     if (getID(piece)[0] == "W") {
@@ -75,49 +75,29 @@ function checkPawn(piece, cSpot) {
 
 function checkRook(piece, cSpot) {
     let tile = getID(piece.parentElement);
-    let n = side.indexOf(tile[0]);
-    let a = side[n];
+    let n = sides.indexOf(tile[0]);
+    let a = sides[n];
     let u = parseInt(tile[1]);
     let b = document.getElementById(tile[1]).childNodes;
-    let i = 0;
     let move1 = true;
     let move2 = true;
-    b.forEach(element => {
-        part1: {
+    for (let l = 0; l <= b.length; l++) {
+        //sides to sides
+        part3: {
             if (move1 == true) {
-                let m = element;
-                if (m.id == piece.parentElement.id) {
-                    break part1;
-                } else {
-                    if (m.hasChildNodes() == true) {
-                        if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
-                            move1 = false;
-                            break part1;
-                        } else {
-                            takes.push(m);
-                            moves.push(m);
-                        }
-                    } else {
-                        moves.push(m);
-                    }
-                }
-            } else {
-                break part1;
-            }
-        }
-        part2: {
-            if (move2 == true) {
-                let m = document.getElementById(a + i.toString());
+                let m = b[l];
                 if (m == null || m == undefined) {
-                    break part2;
+                    break part3;
                 } else {
                     if (m.id == piece.parentElement.id) {
-                        break part2;
+                        break part3;
                     } else {
                         if (m.hasChildNodes() == true) {
-                            if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
-                                move2 = false;
-                                break part2;
+                            if (getID(m.childNodes[0])[0] == getID(piece)[0] && sides.indexOf(getID(m)[0]) < sides.indexOf(tile[0])) {
+                                break part3;
+                            } else if (getID(m.childNodes[0])[0] == getID(piece)[0] && sides.indexOf(getID(m)[0]) > sides.indexOf(tile[0])) {
+                                move1 = false;
+                                break part3;
                             } else {
                                 takes.push(m);
                                 moves.push(m);
@@ -128,11 +108,39 @@ function checkRook(piece, cSpot) {
                     }
                 }
             } else {
-                break part2;
+                break part3;
             }
         }
-        i++;
-    })
+        part4: {
+            // up and down
+            if (move2 == true) {
+                let m = document.getElementById(a + l.toString());
+                if (m == null || m == undefined) {
+                    break part4;
+                } else {
+                    if (m.id == piece.parentElement.id) {
+                        break part4;
+                    } else {
+                        if (m.hasChildNodes() == true) {
+                            if (getID(m.childNodes[0])[0] == getID(piece)[0] && parseInt(getID(m)[1]) < parseInt(tile[1])) {
+                                break part4;
+                            } else if (getID(m.childNodes[0])[0] == getID(piece)[0] && parseInt(getID(m)[1]) > parseInt(tile[1])) {
+                                move2 = false;
+                                break part4;
+                            } else {
+                                takes.push(m);
+                                moves.push(m);
+                            }
+                        } else {
+                            moves.push(m);
+                        }
+                    }
+                }
+            } else {
+                break part4;
+            }
+        }
+    }
 }
 
 function checkKnight(piece, cSpot) {
@@ -141,8 +149,8 @@ function checkKnight(piece, cSpot) {
 
 function checkBishop(piece, cSpot) {
     let tile = getID(piece.parentElement);
-    let n = side.indexOf(tile[0]);
-    let a = [side[n-7], side[n-6], side[n-5], side[n-4], side[n-3], side[n-2], side[n-1], side[n], side[n+1], side[n+2], side[n+3], side[n+4], side[n+5], side[n+6], side[n+7]];
+    let n = sides.indexOf(tile[0]);
+    let a = [sides[n-7], sides[n-6], sides[n-5], sides[n-4], sides[n-3], sides[n-2], sides[n-1], sides[n], sides[n+1], sides[n+2], sides[n+3], sides[n+4], sides[n+5], sides[n+6], sides[n+7]];
     let u = parseInt(tile[1]);
     let b = [(u-7).toString(), (u-6).toString(), (u-5).toString(), (u-4).toString(), (u-3).toString(), (u-2).toString(), (u-1).toString(), (u).toString(), (u+1).toString(), (u+2).toString(), (u+3).toString(), (u+4).toString(), (u+5).toString(), (u+6).toString(), (u+7).toString()];
     let c = [a, b];
@@ -216,12 +224,12 @@ function checkBishop(piece, cSpot) {
 
 function checkQueen(piece, cSpot) {
     let tile = getID(piece.parentElement);
-    let n = side.indexOf(tile[0]);
-    let a = [side[n-7], side[n-6], side[n-5], side[n-4], side[n-3], side[n-2], side[n-1], side[n], side[n+1], side[n+2], side[n+3], side[n+4], side[n+5], side[n+6], side[n+7]];
+    let n = sides.indexOf(tile[0]);
+    let a = [sides[n-7], sides[n-6], sides[n-5], sides[n-4], sides[n-3], sides[n-2], sides[n-1], sides[n], sides[n+1], sides[n+2], sides[n+3], sides[n+4], sides[n+5], sides[n+6], sides[n+7]];
     let u = parseInt(tile[1]);
     let b = [(u-7).toString(), (u-6).toString(), (u-5).toString(), (u-4).toString(), (u-3).toString(), (u-2).toString(), (u-1).toString(), (u).toString(), (u+1).toString(), (u+2).toString(), (u+3).toString(), (u+4).toString(), (u+5).toString(), (u+6).toString(), (u+7).toString()];
     let c = [a, b];
-    let f = side[n];
+    let f = sides[n];
     let d = document.getElementById(tile[1]).childNodes;
     let move1 = true;
     let move2 = true;
@@ -299,10 +307,10 @@ function checkQueen(piece, cSpot) {
             }
         }
     }
-    //side to side and up and down
+    //sides to sides and up and down
     loop2: {
-        for (let l = 0; l < d.length; l++) {
-            //side to side
+        for (let l = 0; l <= d.length; l++) {
+            //sides to sides
             part3: {
                 if (move3 == true) {
                     let m = d[l];
@@ -313,9 +321,9 @@ function checkQueen(piece, cSpot) {
                             break part3;
                         } else {
                             if (m.hasChildNodes() == true) {
-                                if (getID(m.childNodes[0])[0] == getID(piece)[0] && side.indexOf(getID(m)[1]) < side.indexOf(tile[1])) {
+                                if (getID(m.childNodes[0])[0] == getID(piece)[0] && sides.indexOf(getID(m)[0]) < sides.indexOf(tile[0])) {
                                     break part3;
-                                } else if (getID(m.childNodes[0])[0] == getID(piece)[0] && side.indexOf(getID(m)[1]) > side.indexOf(tile[1])) {
+                                } else if (getID(m.childNodes[0])[0] == getID(piece)[0] && sides.indexOf(getID(m)[0]) > sides.indexOf(tile[0])) {
                                     move3 = false;
                                     break part3;
                                 } else {
@@ -372,8 +380,8 @@ function checkQueen(piece, cSpot) {
 function checkKing(piece, cSpot) {
     //check all possible moves
     let tile = getID(piece.parentElement);
-    let n = side.indexOf(tile[0]);
-    let a = [side[n-1], side[n], side[n+1]];
+    let n = sides.indexOf(tile[0]);
+    let a = [sides[n-1], sides[n], sides[n+1]];
     let u = parseInt(tile[1]);
     let b = [(u-1).toString(), (u).toString(), (u+1).toString()];
     for (let i = 0; i < a.length; i++) {
