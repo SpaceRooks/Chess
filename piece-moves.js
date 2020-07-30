@@ -379,7 +379,7 @@ function checkKing(piece, cSpot) {
                 } else {
                     if (m.hasChildNodes() == true) {
                         if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
-                            break;
+                            continue;
                         } else {
                             takes.push(m);
                             moves.push(m);
