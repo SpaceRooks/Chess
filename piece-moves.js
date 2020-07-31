@@ -54,10 +54,10 @@ function checkPawn(piece, cSpot) {
     let a = [sides[n-1], sides[n], sides[n+1]];
     let u = parseInt(tile[1]);
     let b;
-    if (getID(piece)[0] == "w") {
-        b = u - 1;
-    } else {
+    if (getID(piece)[0] == "W") {
         b = u + 1;
+    } else {
+        b = u - 1;
     }
     for (let i = 0; i <= a.length; i++) {
         let m = document.getElementById(a[i] + b.toString());
