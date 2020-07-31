@@ -28,6 +28,17 @@
   width: 80px;
 }
 
+#pieceJail {
+  display: flexbox;
+  width: 320px;
+  height: 400px;
+}
+
+img {
+  width: 60px;
+  height: 60px;
+}
+
 div {
   display: inline-flex;
   padding: none;
