@@ -65,14 +65,15 @@ function checkPawn(piece, cSpot) {
             continue;
         } else {
             if (m.hasChildNodes == true) {
-                if (m.childNodes[0].getID()[0] == tile[0]) {
+                if (getID(m.childNodes[0])[0] == tile[0]) {
                     break;
                 } else {
                     takes.push(m);
-                    moves.push(m);
                 }
-            } else {
+            } else if (tile[0] == getID(m)[0]) {
                 moves.push(m);
+            } else {
+                // do nothing
             }
         }
     }
@@ -472,10 +473,9 @@ function movePiece(to) {
         spot.removeEventListener("click", movePiece);
         aspot.removeEventListener("click", movePiece);
         aspot.childNodes[0].style.border = "none";
-        spot.childNodes[0].style.border = "none";
         moves = [];
         takes = [];
-    } else if (moves.length == 0|| to.target.id == start.id) {
+    } else if (moves.length == 0 || to.target.id == start.id) {
         moves.forEach(element => { element.style.border = "none"; element.removeEventListener("click", movePiece) });
         takes.forEach(element => { element.style.border = "none"; });
         spot.removeEventListener("click", movePiece);
