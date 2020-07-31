@@ -167,8 +167,8 @@
 
     function makePieceJail() {
         let jail = document.getElementById("pieceJail");
-        let wJail = document.createElement("div");
-        let bJail = document.createElement("div");
+        let wJail = document.createElement("span");
+        let bJail = document.createElement("span");
         wJail.setAttribute("id", "whiteJ");
         bJail.setAttribute("id", "blackJ");
         wJail.setAttribute("class", "jail");
