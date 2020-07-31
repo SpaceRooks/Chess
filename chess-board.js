@@ -173,8 +173,9 @@
         bJail.setAttribute("id", "blackJ");
         wJail.setAttribute("class", "jail");
         bJail.setAttribute("class", "jail");
-        jail.appendChild(wJail);
         jail.appendChild(bJail);
+        jail.appendChild(document.createElement("br"));
+        jail.appendChild(wJail);
     }
     //when buttons are clicked board appears, disapears on reclick
     document.getElementById("startButton").addEventListener("click", playGame);
