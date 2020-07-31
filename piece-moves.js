@@ -472,10 +472,9 @@ function movePiece(to) {
         spot.removeEventListener("click", movePiece);
         aspot.removeEventListener("click", movePiece);
         aspot.childNodes[0].style.border = "none";
-        spot.childNodes[0].style.border = "none";
         moves = [];
         takes = [];
-    } else if (moves.length == 0|| to.target.id == start.id) {
+    } else if (moves.length == 0 || to.target.id == start.id) {
         moves.forEach(element => { element.style.border = "none"; element.removeEventListener("click", movePiece) });
         takes.forEach(element => { element.style.border = "none"; });
         spot.removeEventListener("click", movePiece);
