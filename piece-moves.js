@@ -439,12 +439,14 @@ function checkKing(piece, cSpot) {
 function movePiece(to) {
     let spot = to.target;
     if (start == undefined || start == null || start == to.target) {
+        
+    } else {
         if (to.target.id == start.id) {
             spot.removeEventListener("click", movePiece);
             if (spot.childNodes[0] != undefined) {
-                spot.childNodes[0].style.outline = "none";
+                    spot.childNodes[0].style.outline = "none";
             } else {
-                spot.style.outline = "none";
+                 spot.style.outline = "none";
             }
             spot.style.outline = "none";
             moves = [];
@@ -452,11 +454,8 @@ function movePiece(to) {
             start.style.outline = "none";
             start = null;
         } else {
-
+            backup = start;
         }
-    } else {
-        backup = start;
-        
         if (moves.length != 0 || takes.length != 0 && moves.includes(spot) == true || takes.includes(spot.parentElement) == true) {
             moves.forEach(element => { element.style.outline = "none"; element.removeEventListener("click", movePiece) });
             takes.forEach(element => { element.style.outline = "none"; element.removeEventListener("click", movePiece)});
