@@ -190,7 +190,7 @@ footer {
   height: 80px;
   width: 650px;
   margin-top: -3px;
-  margin-left: 5px;
+  padding-left: 5px;
 }
 
 .tile {

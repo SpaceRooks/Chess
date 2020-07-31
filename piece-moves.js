@@ -13,7 +13,7 @@ function checkPiece(elem) {
     } else {
         let pieceID = getID(elem.target);
         start = elem.target;
-        elem.target.style.border = "thick solid blue";
+        elem.target.style.outline = "3px dotted blue";
         let player;
         switch (pieceID[0]) {
             case "W":
@@ -43,8 +43,8 @@ function checkPiece(elem) {
                 checkKing(elem.target, pieceID);
                 break;
         }
-        moves.forEach(element => { element.style.border = "thick solid green"; element.parentElement.addEventListener("click", movePiece);});
-        takes.forEach(element => { element.style.border = "thick solid red"; })
+        moves.forEach(element => { element.style.outline = "5px dashed LawnGreen"; element.parentElement.addEventListener("click", movePiece);});
+        takes.forEach(element => { element.style.outline = "3px solid red"; });
     }
 }
 
@@ -437,14 +437,29 @@ function checkKing(piece, cSpot) {
 }
 
 function movePiece(to) {
+    let spot = to.target;
     if (start == undefined || start == null || start == to.target) {
+        if (to.target.id == start.id) {
+            spot.removeEventListener("click", movePiece);
+            if (spot.childNodes[0] != undefined) {
+                spot.childNodes[0].style.outline = "none";
+            } else {
+                spot.style.outline = "none";
+            }
+            spot.style.outline = "none";
+            moves = [];
+            takes = [];
+            start.style.outline = "none";
+            start = null;
+        } else {
 
+        }
     } else {
         backup = start;
-        let spot = to.target;
+        
         if (moves.length != 0 || takes.length != 0 && moves.includes(spot) == true || takes.includes(spot.parentElement) == true) {
-            moves.forEach(element => { element.style.border = "none"; element.removeEventListener("click", movePiece) });
-            takes.forEach(element => { element.style.border = "none"; element.removeEventListener("click", movePiece)});
+            moves.forEach(element => { element.style.outline = "none"; element.removeEventListener("click", movePiece) });
+            takes.forEach(element => { element.style.outline = "none"; element.removeEventListener("click", movePiece)});
             if (takes.includes(spot) ==  true || takes.includes(spot.parentElement) == true) {
                 // jail it
                 let aspot = spot.parentElement;
@@ -454,9 +469,9 @@ function movePiece(to) {
             } else if (to.target.id == start.id) {
                 spot.removeEventListener("click", movePiece);
                 if (spot.childNodes[0] != undefined) {
-                    spot.childNodes[0].style.border = "none";
+                    spot.childNodes[0].style.outline = "none";
                 } else {
-                    spot.childNodes[0].style.border = "none";
+                    spot.childNodes[0].style.outline = "none";
                 }
             } else if (moves.includes(spot) == true || moves.includes(spot.parentElement) == true) {
                 // move like normal
@@ -464,10 +479,22 @@ function movePiece(to) {
                 spot.removeEventListener("click", movePiece);
             }
             spot.removeEventListener("click", movePiece);
-            spot.style.border = "none";
+            spot.style.outline = "none";
             moves = [];
             takes = [];
-            start.style.border = "none";
+            start.style.outline = "none";
+            start = null;
+        } else if (to.target.id == start.id) {
+            spot.removeEventListener("click", movePiece);
+            if (spot.childNodes[0] != undefined) {
+                    spot.childNodes[0].style.outline = "none";
+                } else {
+                    spot.childNodes[0].style.outline = "none";
+                }
+            spot.style.outline = "none";
+            moves = [];
+            takes = [];
+            start.style.outline = "none";
             start = null;
         } else {
             alert("that is not a valid move");
