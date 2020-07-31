@@ -74,7 +74,7 @@
             fBoard.appendChild(row);
         }
     //   add to the board
-        brd.appendChild(fBoard)
+        brd.appendChild(fBoard);
         board.appendChild(brd);
         setBoard();
     }

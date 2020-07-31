@@ -65,14 +65,15 @@ function checkPawn(piece, cSpot) {
             continue;
         } else {
             if (m.hasChildNodes == true) {
-                if (m.childNodes[0].getID()[0] == tile[0]) {
+                if (getID(m.childNodes[0])[0] == tile[0]) {
                     break;
                 } else {
                     takes.push(m);
-                    moves.push(m);
                 }
-            } else {
+            } else if (tile[0] == getID(m)[0]) {
                 moves.push(m);
+            } else {
+                // do nothing
             }
         }
     }
