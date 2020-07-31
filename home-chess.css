@@ -62,6 +62,11 @@ h1 {
     padding: 20px;
 }
 
+#header {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 
 /*
 *
@@ -92,7 +97,7 @@ button {
     border-radius: 4px;
     padding: 10px;
 }
-  
+
 .navButton:hover{
     border-color:rgb(224, 181, 129);;
     background-color: rgb(224, 181, 129);
@@ -156,6 +161,10 @@ footer {
     justify-content: space-evenly;
 }
 
+.start {
+    display: flex;
+    justify-content: center;
+}
 
 /*
 *
