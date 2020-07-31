@@ -442,9 +442,18 @@ function checkKing(piece, cSpot) {
 function movePiece(to) {
     let piece = document.getElementById(spot).childNodes;
     moves.forEach(element => { element.removeEventListener("click", movePiece) });
-    to.target.appendChild(piece[0]);
+    if (to.target == piece[0]) {
+        jailPiece(to.target);
+        to.target.parrentElement.appendChild(piece[0]);
+    } else {
+        to.target.appendChild(piece[0]);
+    }
     moves= [];
     takes = [];
+}
+
+function jailPiece(piece) {
+    
 }
 
 function getID(img) {

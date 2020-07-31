@@ -17,7 +17,7 @@
             makeBoard();
             displayBoard = true;
         // makeTimer():
-        // makePieceJail();
+            makePieceJail();
         }
         
     }
@@ -163,6 +163,18 @@
             }
             t++;
         }
+    }
+
+    function makePieceJail() {
+        let jail = document.getElementById("pieceJail");
+        let wJail = document.createElement("div");
+        let bJail = document.createElement("div");
+        wJail.setAttribute("id", "whiteJ");
+        bJail.setAttribute("id", "blackJ");
+        wJail.setAttribute("class", "jail");
+        bJail.setAttribute("class", "jail");
+        jail.appendChild(wJail);
+        jail.appendChild(bJail);
     }
     //when buttons are clicked board appears, disapears on reclick
     document.getElementById("onePlayerButton").addEventListener("click", playGame);
