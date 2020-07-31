@@ -1,6 +1,6 @@
 "use strict";
 
-let start;
+let start, backup;
 let moves = [];
 let takes = [];
 const side = ["h", "g", "f", "e", "d", "c", "b", "a"];
@@ -8,10 +8,11 @@ const sides = side.reverse();
 
 
 function checkPiece(elem) {
-    if (start != undefined && start != null) {
+    if (start != undefined || start != null) {
         movePiece(elem)
     } else {
         let pieceID = getID(elem.target);
+        start = elem.target;
         elem.target.style.border = "thick solid blue";
         let player;
         switch (pieceID[0]) {
@@ -42,7 +43,6 @@ function checkPiece(elem) {
                 checkKing(elem.target, pieceID);
                 break;
         }
-        start = elem.target;
         moves.forEach(element => { element.style.border = "thick solid green"; element.parentElement.addEventListener("click", movePiece);});
         takes.forEach(element => { element.style.border = "thick solid red"; })
     }
@@ -54,19 +54,19 @@ function checkPawn(piece, cSpot) {
     let a = [sides[n-1], sides[n], sides[n+1]];
     let u = parseInt(tile[1]);
     let b;
-    if (getID(piece)[0] == "W") {
-        b = u + 1;
-    } else {
+    if (getID(piece)[0] == "w") {
         b = u - 1;
+    } else {
+        b = u + 1;
     }
-    for (let i = 0; i < a.length; i++) {
+    for (let i = 0; i <= a.length; i++) {
         let m = document.getElementById(a[i] + b.toString());
         if (m == null || m == undefined) {
             continue;
         } else {
-            if (m.hasChildNodes == true) {
-                if (getID(m.childNodes[0])[0] == tile[0]) {
-                    break;
+            if (m.hasChildNodes() == true) {
+                if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
+                    continue;
                 } else {
                     takes.push(m);
                 }
@@ -106,7 +106,6 @@ function checkRook(piece, cSpot) {
                                 break part3;
                             } else {
                                 takes.push(m);
-                                moves.push(m);
                             }
                         } else {
                             moves.push(m);
@@ -135,7 +134,6 @@ function checkRook(piece, cSpot) {
                                 break part4;
                             } else {
                                 takes.push(m);
-                                moves.push(m);
                             }
                         } else {
                             moves.push(m);
@@ -174,7 +172,6 @@ function checkKnight(piece, cSpot) {
                     // do nothing
                 } else {
                     takes.push(m);
-                    moves.push(m);
                 }
             } else {
                 moves.push(m);
@@ -192,7 +189,7 @@ function checkBishop(piece, cSpot) {
     let c = [a, b];
     let move1 = true;
     let move2 = true;
-    for (let i = 0; i < b.length; i++)  {
+    for (let i = 0; i <= b.length; i++)  {
         // diagnal
         part1: {
             if (move1 == true) {
@@ -211,7 +208,6 @@ function checkBishop(piece, cSpot) {
                                 break part1;
                             } else {
                                 takes.push(m);
-                                moves.push(m);
                             }
                         } else {
                             moves.push(m);
@@ -243,7 +239,7 @@ function checkBishop(piece, cSpot) {
                                     break part2;
                                 } else {
                                     takes.push(p);
-                                    moves.push(p);
+
                                 }
                             } else {
                                 moves.push(p);
@@ -273,7 +269,7 @@ function checkQueen(piece, cSpot) {
     let move4 = true;
     // diagonals
     loop1: {
-        for (let i = 0; i < b.length; i++)  {
+        for (let i = 0; i <= b.length; i++)  {
             // diagnal
             part1: {
                 if (move1 == true) {
@@ -292,7 +288,6 @@ function checkQueen(piece, cSpot) {
                                     break part1;
                                 } else {
                                     takes.push(m);
-                                    moves.push(m);
                                 }
                             } else {
                                 moves.push(m);
@@ -324,7 +319,6 @@ function checkQueen(piece, cSpot) {
                                         break part2;
                                     } else {
                                         takes.push(p);
-                                        moves.push(p);
                                     }
                                 } else {
                                     moves.push(p);
@@ -364,7 +358,6 @@ function checkQueen(piece, cSpot) {
                                     break part3;
                                 } else {
                                     takes.push(m);
-                                    moves.push(m);
                                 }
                             } else {
                                 moves.push(m);
@@ -393,7 +386,6 @@ function checkQueen(piece, cSpot) {
                                     break part4;
                                 } else {
                                     takes.push(m);
-                                    moves.push(m);
                                 }
                             } else {
                                 moves.push(m);
@@ -420,8 +412,8 @@ function checkKing(piece, cSpot) {
     let a = [sides[n-1], sides[n], sides[n+1]];
     let u = parseInt(tile[1]);
     let b = [(u-1).toString(), (u).toString(), (u+1).toString()];
-    for (let i = 0; i < a.length; i++) {
-        for (let t = 0; t < b.length; t++) {
+    for (let i = 0; i <= a.length; i++) {
+        for (let t = 0; t <= b.length; t++) {
             let m = document.getElementById(a[i] + b[t]);
             if (m == null || m == undefined) {
                 continue;
@@ -434,7 +426,6 @@ function checkKing(piece, cSpot) {
                             continue;
                         } else {
                             takes.push(m);
-                            moves.push(m);
                         }
                     } else {
                         moves.push(m);
@@ -446,45 +437,53 @@ function checkKing(piece, cSpot) {
 }
 
 function movePiece(to) {
-    let spot = to.target;
-    let aspot = to.target.parentElement;
-    if (moves.length != 0 && moves.includes(spot) == true || moves.includes(aspot) == true) {
-        moves.forEach(element => { element.style.border = "none"; element.removeEventListener("click", movePiece) });
-        takes.forEach(element => { element.style.border = "none"; });
-        if (aspot.id == "whiteJ" || aspot.id == "blackJ" || start == null) {
-            spot.childNodes[0].removeEventListener("click", movePiece);
-        } else { 
-            if (aspot.hasChildNodes() && aspot.childNodes.length == 1 && getID(start)[0] != getID(to.target)[0]) {
-                // jail it
-                jailPiece(to.target);
-                aspot.appendChild(start);
-                aspot.removeEventListener("click", movePiece);
-                start.removeEventListener("click", movePiece);
-                start = null;
-            } else if (to.target.id == start.id) {
-                aspot.removeEventListener("click", movePiece);
+    if (start == undefined || start == null || start == to.target) {
+
+    } else {
+        backup = start;
+        let spot = to.target;
+        let aspot = to.target.parentElement;
+        if (moves.length != 0 || takes.length != 0 && moves.includes(aspot) == true || takes.includes(aspot) == true) {
+            moves.forEach(element => { element.style.border = "none"; element.removeEventListener("click", movePiece) });
+            takes.forEach(element => { element.style.border = "none"; });
+            if (aspot.id == "whiteJ" || aspot.id == "blackJ" || start == null) {
+                spot.childNodes[0].removeEventListener("click", movePiece);
+            } else { 
+                if (aspot.hasChildNodes() && aspot.childNodes.length == 1 && getID(start)[0] != getID(to.target)[0]) {
+                    // jail it
+                    jailPiece(to.target);
+                    aspot.appendChild(start);
+                    aspot.removeEventListener("click", movePiece);
+                } else if (to.target.id == start.id) {
+                    spot.removeEventListener("click", movePiece);
+                } else {
+                    // move like normal
+                    to.target.appendChild(start);
+                    aspot.removeEventListener("click", movePiece);
+                }
+            }
+            aspot.removeEventListener("click", movePiece);
+            aspot.childNodes[0].style.border = "none";
+            moves = [];
+            takes = [];
+            start.style.border = "none";
+            start = null;
+        } else if (to.target.id == start.id) {
+            if (spot.childNodes[0] != undefined) {
+                spot.childNodes[0].style.border = "none";
             } else {
-                // move ike normal
-                to.target.appendChild(start);
-                aspot.removeEventListener("click", movePiece);
-                start = null;
+                aspot.childNodes[0].style.border = "none";
+            }
+            moves = [];
+            takes = [];
+            start = null;
+        } else {
+            if (moves.length == 0) {
+                checkPiece(backup.parentElement);
+            } else {
+                alert("that is not a valid move");
             }
         }
-        spot.removeEventListener("click", movePiece);
-        aspot.removeEventListener("click", movePiece);
-        aspot.childNodes[0].style.border = "none";
-        moves = [];
-        takes = [];
-    } else if (moves.length == 0 || to.target.id == start.id) {
-        moves.forEach(element => { element.style.border = "none"; element.removeEventListener("click", movePiece) });
-        takes.forEach(element => { element.style.border = "none"; });
-        spot.removeEventListener("click", movePiece);
-        aspot.removeEventListener("click", movePiece);
-        aspot.childNodes[0].style.border = "none";
-        moves = [];
-        takes = [];
-    } else {
-        alert("that is not a valid move");
     }
 }
 
