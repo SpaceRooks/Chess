@@ -12,6 +12,8 @@
         if(displayBoard == true) {
             displayBoard = false;
             document.getElementById("brd").remove();
+            document.getElementById("whiteJ").remove();
+            document.getElementById("blackJ").remove();
         }
         else {
             makeBoard();

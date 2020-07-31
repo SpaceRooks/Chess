@@ -30,8 +30,8 @@
 
 #pieceJail {
   display: flexbox;
-  width: 320px;
-  height: 400px;
+  background-color: gray;
+  height: 450px;
 }
 
 img {
