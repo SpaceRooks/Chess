@@ -443,8 +443,8 @@ function checkKing(piece, cSpot) {
 }
 
 function movePiece(to) {
-    if (moves.length != 0 && moves.includes(to.target) == true) {
-        let spot = to.target.parentElement;
+    let spot = to.target;
+    if (moves.length != 0 && moves.includes(spot) == true) {
         moves.forEach(element => { element.removeEventListener("click", movePiece) });
         if (spot.id == "whiteJ" || spot.id == "blackJ" || start == null) {
             spot.childNodes[0].removeEventListener("click", movePiece);
@@ -470,7 +470,6 @@ function movePiece(to) {
         // do nothing
     } else {
         alert("that is not a valid move");
-        moves = [];
     }
 }
 
