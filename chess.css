@@ -20,7 +20,7 @@
 .rank {
   height: 80px;
   width: 640px;
-  margin-top: -4px;
+  margin-top: 0px;
 }
 
 .tile {
@@ -32,11 +32,6 @@
   display: flexbox;
   background-color: gray;
   height: 450px;
-}
-
-img {
-  width: 60px;
-  height: 60px;
 }
 
 div {
