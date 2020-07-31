@@ -73,7 +73,7 @@ function checkPawn(piece, cSpot) {
     }
 }
 
-function checkRook(piece, cSpot) {
+function checkRook(piece, cSpot) {  
     let tile = getID(piece.parentElement);
     let n = sides.indexOf(tile[0]);
     let a = sides[n];
@@ -144,7 +144,37 @@ function checkRook(piece, cSpot) {
 }
 
 function checkKnight(piece, cSpot) {
-    
+    let tile = getID(piece.parentElement);
+    let n = sides.indexOf(tile[0]);
+    let a = [sides[n-2], sides[n-1], sides[n+1], sides[n+2]];
+    let u = parseInt(tile[1]);
+    let b = [(u-2).toString(), (u-1).toString(), (u+1).toString(), (u+2).toString()];
+    let c0 = a[1] + b[0];
+    let c1 = a[0] + b[1];
+    let c2 = a[2] + b[0];
+    let c3 = a[3] + b[1];
+    let c4 = a[0] + b[2];
+    let c5 = a[1] + b[3];
+    let c6 = a[2] + b[3];
+    let c7 = a[3] + b[2];
+    let cs = [c0, c1, c2,c3, c4,c5, c6, c7];
+    cs.forEach(element => {
+        let m = document.getElementById(element);
+        if (m == null || m == undefined) {
+            // do nothing
+        } else {
+            if (m.hasChildNodes == true) {
+                if (m.childNodes[0].getID()[0] == tile[0]) {
+                    // do nothing
+                } else {
+                    takes.push(m);
+                    moves.push(m);
+                }
+            } else {
+                moves.push(m);
+            }
+        }
+    })
 }
 
 function checkBishop(piece, cSpot) {
