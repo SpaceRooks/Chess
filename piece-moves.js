@@ -442,67 +442,35 @@ function movePiece(to) {
     } else {
         backup = start;
         let spot = to.target;
-        if (spot.childNodes[0] != undefined && spot.childNodes[0] != null) {
-            if (moves.length != 0 || takes.length != 0 && moves.includes(spot) == true || takes.includes(spot) == true) {
-                moves.forEach(element => { element.style.border = "none"; element.removeEventListener("click", movePiece) });
-                takes.forEach(element => { element.style.border = "none"; element.removeEventListener("click", movePiece)});
-                if (takes.includes(spot) ==  true) {
-                    // jail it
-                    jailPiece(to.target);
-                    spot.appendChild(start);
-                    spot.removeEventListener("click", movePiece);
-                } else if (to.target.id == start.id) {
-                    spot.removeEventListener("click", movePiece);
-                    if (spot.childNodes[0] != undefined) {
-                        spot.childNodes[0].style.border = "none";
-                    } else {
-                        spot.childNodes[0].style.border = "none";
-                    }
-                } else if (moves.includes(spot) == true) {
-                    // move like normal
-                    to.target.appendChild(start);
-                    spot.removeEventListener("click", movePiece);
-                }
+        if (moves.length != 0 || takes.length != 0 && moves.includes(spot) == true || takes.includes(spot.parentElement) == true) {
+            moves.forEach(element => { element.style.border = "none"; element.removeEventListener("click", movePiece) });
+            takes.forEach(element => { element.style.border = "none"; element.removeEventListener("click", movePiece)});
+            if (takes.includes(spot) ==  true || takes.includes(spot.parentElement) == true) {
+                // jail it
+                let aspot = spot.parentElement;
+                jailPiece(to.target);
+                aspot.appendChild(start);
+                spot.parentElement.removeEventListener("click", movePiece);
+            } else if (to.target.id == start.id) {
                 spot.removeEventListener("click", movePiece);
-                spot.childNodes[0].style.border = "none";
-                moves = [];
-                takes = [];
-                start.style.border = "none";
-                start = null;
-            } else {
-                alert("that is not a valid move");
-            }
-        } else {
-            let aspot = spot.parentElement;
-            if (moves.length != 0 || takes.length != 0 && moves.includes(aspot) == true || takes.includes(aspot) == true) {
-                moves.forEach(element => { element.style.border = "none"; element.removeEventListener("click", movePiece) });
-                takes.forEach(element => { element.style.border = "none"; element.removeEventListener("click", movePiece)});
-                if (takes.includes(aspot) ==  true) {
-                    // jail it
-                    jailPiece(to.target);
-                    aspot.appendChild(start);
-                    aspot.removeEventListener("click", movePiece);
-                } else if (to.target.id == start.id) {
-                    aspot.removeEventListener("click", movePiece);
-                    if (aspot.childNodes[0] != undefined) {
-                        aspot.childNodes[0].style.border = "none";
-                    } else {
-                        aspot.childNodes[0].style.border = "none";
-                    }
-                } else if (moves.includes(aspot) == true) {
-                    // move like normal
-                    to.target.appendChild(start);
-                    aspot.removeEventListener("click", movePiece);
+                if (spot.childNodes[0] != undefined) {
+                    spot.childNodes[0].style.border = "none";
+                } else {
+                    spot.childNodes[0].style.border = "none";
                 }
-                aspot.removeEventListener("click", movePiece);
-                aspot.childNodes[0].style.border = "none";
-                moves = [];
-                takes = [];
-                start.style.border = "none";
-                start = null;
-            } else {
-                alert("that is not a valid move");
+            } else if (moves.includes(spot) == true || moves.includes(spot.parentElement) == true) {
+                // move like normal
+                to.target.appendChild(start);
+                spot.removeEventListener("click", movePiece);
             }
+            spot.removeEventListener("click", movePiece);
+            spot.style.border = "none";
+            moves = [];
+            takes = [];
+            start.style.border = "none";
+            start = null;
+        } else {
+            alert("that is not a valid move");
         }
     }
 }
