@@ -12,7 +12,8 @@
     chess playing website.
 */
 
-
+/* Font style */
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
 
 /*
 *
@@ -20,11 +21,11 @@
 *
 */
 
-html {
-    background-color: hsla(40.2, 100%, 75.1%, 0.66); 
-    color:hsl(45, 9.7%, 21%); 
-    text-align: left;
-    padding: 2px;	
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Patua One', cursive;	
 }
 
 .flex-container {
@@ -52,9 +53,13 @@ body {
 *
 */
 h1 {
+    /* position: fixed;
+    top: 0%; */
     color: black;
     font-size: 72px;
     text-align: center;
+    background-color: rgb(209, 119, 9);
+    padding: 20px;
 }
 
 
@@ -64,8 +69,36 @@ h1 {
 *
 */
 
+a {
+    text-decoration: none;
+    color: rgb(209, 119, 9);
+}
 
-
+.nav {
+    width: 100%;
+    background-color: rgb(209, 119, 9);
+    padding-bottom: 20px;
+    padding-right: 0px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+button {
+    font-size: 18px;
+    background-color:white;
+    color: rgb(209, 119, 9);
+    margin-right: 20px;
+    border: 3px solid white;
+    border-radius: 4px;
+    padding: 10px;
+}
+  
+.navButton:hover{
+    border-color:rgb(224, 181, 129);;
+    background-color: rgb(224, 181, 129);
+    color: rgb(209, 119, 9);
+    transform: scale(1.1);
+  }
 
 /*
 *
@@ -78,30 +111,23 @@ div {
     padding: none;
 }
 
-button {
-    border: none;
-    background-color: rgb(224, 201, 245);
-    color:rgb(111, 29, 150);
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    position: center;
+#startButton {
+    font-size: 18px;
+    background-color:white;
+    color: rgb(209, 119, 9);
+    margin-right: 20px;
+    border: 3px solid white;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+    padding: 10px;
+    display: block;
+    left: 50%;
 }
 
-.buttons {
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-}
-
-button:hover {
-    background-color: rgb(248, 168, 199);
-    color: rgb(228, 48, 138);
-}
+#startButton:hover {
+    transform: scale(1.1);
+} 
 
 #board {
     display: inline-block;
@@ -109,6 +135,16 @@ button:hover {
     height: 640px;
 }
 
+/*
+*
+* Footer Styles
+*
+*/
+
+footer {
+    text-align: center;
+    padding: 10px;
+}
 
 /*
 *
@@ -126,11 +162,3 @@ button:hover {
   height: 80px;
   width: 80px;
 }
-
-
-
-
-
-
-
-

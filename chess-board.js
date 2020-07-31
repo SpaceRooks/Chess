@@ -177,6 +177,5 @@
         jail.appendChild(bJail);
     }
     //when buttons are clicked board appears, disapears on reclick
-    document.getElementById("onePlayerButton").addEventListener("click", playGame);
-    document.getElementById("twoPlayerButton").addEventListener("click", playGame);
+    document.getElementById("startButton").addEventListener("click", playGame);
 })();
