@@ -146,6 +146,17 @@ footer {
     padding: 10px;
 }
 
+#aside-right {
+    width: 300px;
+    border: 5px solid rgb(209, 119, 9);
+}
+
+.spacing {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
 /*
 *
 * JavaScript Styles
