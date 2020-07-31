@@ -1,6 +1,6 @@
 "use strict";
 
-let spot;
+let start;
 let moves = [];
 let takes = [];
 const side = ["h", "g", "f", "e", "d", "c", "b", "a"];
@@ -8,39 +8,42 @@ const sides = side.reverse();
 
 
 function checkPiece(elem) {
-    let pieceID = getID(elem.target);
-    let player;
-    spot = elem.target.parentElement.id;
-    switch (pieceID[0]) {
-        case "W":
-            player = true;
-            break;
-        case "B":
-            player = false;
-            break;
+    if (start != undefined && start != null) {
+        movePiece(elem)
+    } else {
+        let pieceID = getID(elem.target);
+        let player;
+        switch (pieceID[0]) {
+            case "W":
+                player = true;
+                break;
+            case "B":
+                player = false;
+                break;
+        }
+        switch (pieceID[1]) {
+            case "p":
+                checkPawn(elem.target, pieceID);
+                break;
+            case "r":
+                checkRook(elem.target, pieceID);
+                break;
+            case "n":
+                checkKnight(elem.target, pieceID);
+                break;
+            case "b":
+                checkBishop(elem.target, pieceID);
+                break;
+            case "q":
+                checkQueen(elem.target, pieceID);
+                break;
+            case "k":
+                checkKing(elem.target, pieceID);
+                break;
+        }
+        start = elem.target;
+        moves.forEach(element => { element.parentElement.addEventListener("click", movePiece)});
     }
-    switch (pieceID[1]) {
-        case "p":
-            checkPawn(elem.target, pieceID);
-            break;
-        case "r":
-            checkRook(elem.target, pieceID);
-            break;
-        case "n":
-            checkKnight(elem.target, pieceID);
-            break;
-        case "b":
-            checkBishop(elem.target, pieceID);
-            break;
-        case "q":
-            checkQueen(elem.target, pieceID);
-            break;
-        case "k":
-            checkKing(elem.target, pieceID);
-            break;
-    }
-    moves.forEach(element => { element.addEventListener("click", movePiece)});
-    // window.addEventListener("")
 }
 
 function checkPawn(piece, cSpot) {
@@ -163,8 +166,8 @@ function checkKnight(piece, cSpot) {
         if (m == null || m == undefined) {
             // do nothing
         } else {
-            if (m.hasChildNodes == true) {
-                if (m.childNodes[0].getID()[0] == tile[0]) {
+            if (m.hasChildNodes() == true) {
+                if (getID(m.childNodes[0])[0] == getID(piece)[0]) {
                     // do nothing
                 } else {
                     takes.push(m);
@@ -440,20 +443,43 @@ function checkKing(piece, cSpot) {
 }
 
 function movePiece(to) {
-    let piece = document.getElementById(spot).childNodes;
-    moves.forEach(element => { element.removeEventListener("click", movePiece) });
-    if (to.target == piece[0]) {
-        jailPiece(to.target);
-        to.target.parrentElement.appendChild(piece[0]);
+    if (moves.length != 0 && moves.includes(to.target) == true) {
+        let spot = to.target.parentElement;
+        moves.forEach(element => { element.removeEventListener("click", movePiece) });
+        if (spot.id == "whiteJ" || spot.id == "blackJ" || start == null) {
+            spot.childNodes[0].removeEventListener("click", movePiece);
+        } else { 
+            if (spot.hasChildNodes()&& spot.childNodes.length == 1 && getID(start)[0] != getID(to.target)[0]) {
+                // jail it
+                jailPiece(to.target);
+                spot.appendChild(start);
+                spot.removeEventListener("click", movePiece);
+                start = null;
+            } else if (to.target.id == start.id) {
+                spot.removeEventListener("click", movePiece);
+            } else {
+                // move ike normal
+                to.target.appendChild(start);
+                spot.removeEventListener("click", movePiece);
+                start = null;
+            }
+        }
+        moves = [];
+        takes = [];
+    } else if (moves.length == 0) {
+        // do nothing
     } else {
-        to.target.appendChild(piece[0]);
+        alert("that is not a valid move");
+        moves = [];
     }
-    moves= [];
-    takes = [];
 }
 
 function jailPiece(piece) {
-    
+    if (getID(piece)[0] == "w" || getID(piece)[0] == "W") {
+        document.getElementById("whiteJ").appendChild(piece);
+    } else {
+        document.getElementById("blackJ").appendChild(piece);
+    }
 }
 
 function getID(img) {
