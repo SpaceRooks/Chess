@@ -439,7 +439,13 @@ function checkKing(piece, cSpot) {
 function movePiece(to) {
     let spot = to.target;
     if (start == undefined || start == null || start == to.target) {
-        
+        if (moves.length == 0) {
+            to.target.parentElement.removeEventListener("click", movePiece)
+            to.target.style.outline = "none";
+
+        } else {
+            
+        }
     } else {
         if (to.target.id == start.id) {
             spot.removeEventListener("click", movePiece);
